@@ -99,8 +99,8 @@ module.exports = generators.Base.extend({
         },
         {
           type: 'confirm',
-          name: 'gulpsetup',
-          message: 'Would you like to setup a Gulp configuration ready to use?',
+          name: 'npmsetup',
+          message: 'Would you like to setup a configuration ready to use?',
           default: true
         }
       ];
@@ -302,7 +302,7 @@ module.exports = generators.Base.extend({
         );
       }
 
-      if (this.props.gulpsetup) {
+      if (this.props.npmsetup) {
         this.fs.copyTpl(
           this.templatePath('_package.json'),
           this.destinationPath('package.json'),
@@ -325,30 +325,30 @@ module.exports = generators.Base.extend({
 
   install: {
     installPackages: function installPackages() {
-      if (this.props.gulpsetup) {
+      if (this.props.npmsetup) {
         this.log(chalk.yellow('\nInstalling required packages...'));
 
-        this.npmInstall(['autoprefixer'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['browser-sync'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['eslint'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['eslint-config-standard'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['eslint-plugin-promise'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['eslint-plugin-standard'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['imagemin-cli'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['mkdirp'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['node-sass'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['redrun'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['onchange'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['postcss-cli'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['rimraf'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['stylelint'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['uglify-js'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['svg-sprite-generator'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['svgo'], { 'saveDev': true, 'global'; true });        
-        this.npmInstall(['archiver'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['del'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['wp-pot'], { 'saveDev': true, 'global'; true });
-        this.npmInstall(['wiredep'], { 'saveDev': true, 'global'; true });
+        this.npmInstall(['autoprefixer'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['browser-sync'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['eslint'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['eslint-config-standard'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['eslint-plugin-promise'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['eslint-plugin-standard'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['imagemin-cli'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['mkdirp'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['node-sass'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['redrun'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['onchange'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['postcss-cli'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['rimraf'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['stylelint'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['uglify-js'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['svg-sprite-generator'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['svgo'], { 'saveDev': true, 'global': true });        
+        this.npmInstall(['archiver'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['del'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['wp-pot'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['wiredep'], { 'saveDev': true, 'global': true });
       }
     }
   },
@@ -357,7 +357,7 @@ module.exports = generators.Base.extend({
     endMessage: function endMessage() {
       this.log(chalk.green('\nAll Done!!\n------------------------\n'));
 
-      if (this.props.gulpsetup) {
+      if (this.props.npmsetup) {
         this.log('\nRun ' + chalk.green('gulp') + ' to start the development and ' + chalk.green('gulp build') + ' to create a zip file in ' + chalk.white('dist/' + this.props.themeslug + '.zip') + ' ready for production.');
       }
     }
