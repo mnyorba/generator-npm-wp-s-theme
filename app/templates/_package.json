@@ -49,7 +49,7 @@
     "imagemin-cli": "^3.0.0",
     "mkdirp": "^0.5.1",
     "node-sass": "^3.7.0",
-    "npm-run-all": "^2.1.1",
+    "redrun": "^5.9.17",
     "onchange": "^2.4.0",
     "postcss-cli": "^2.5.2",
     "rimraf": "^2.5.4",
