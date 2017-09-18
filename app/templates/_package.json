@@ -1,0 +1,65 @@
+{
+  "name": "<%= package_name %>",
+  "version": "0.0.1",
+  "description": "<%= package_description %>",
+  "author": "<%= package_author %>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mnyorba/generator-npm-wp-s-theme"
+  },
+  "bugs": "https://github.com/mnyorba/generator-npm-wp-s-theme/issues",
+  "keywords": [
+    "npm",
+    "scripts",
+    "npm scripts",
+    "watch",
+    "minify",
+    "compress"
+  ],
+  "scripts": {
+    "wiredep": "wiredep -s sass/style.scss --dependencies",
+    "scss": "node-sass --output-style expanded -o style.css sass/*.scss",
+    "serve": "browser-sync start --server --files \"sass/*.scss, js/*.js, **/*.php, !node_modules/**/*.html\"",
+    "autoprefixer": "postcss -u autoprefixer -r *.css",
+    "lint": "eslint js || true",
+    "lint-scss": "stylelint sass/*.scss --syntax scss || true",
+    "build:css": "run-s lint-scss scss autoprefixer",
+    "build:js": "run-s lint uglify",
+    "watch:css": "onchange \"sass\" -- run-s build:css",
+    "watch:js": "onchange \"js\" -- run-s build:js",
+    "watch": "run-p serve watch:*",
+    
+    "clean": "rimraf dist/{css/*,js/*,images/*}",
+    "uglify": "mkdirp dist/js -p && uglifyjs src/js/*.js -m -o dist/js/app.js && uglifyjs src/js/*.js -m -c -o dist/js/app.min.js",
+    "imagemin": "imagemin src/images/* -o dist/images",
+    "icons": "svgo -f src/images/icons -o dist/images/icons && svg-sprite-generate -d dist/images/icons -o dist/images/icons/sprite.svg",
+    "build:images": "run-s imagemin icons",
+    "build": "run-s build:*",
+    "watch:images": "onchange \"src/images\" -- run-s build:images",
+    "postinstall": "run-s build watch"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "browser-sync": "^2.12.8",
+    "eslint": "^2.10.2",
+    "eslint-config-standard": "^5.3.1",
+    "eslint-plugin-promise": "^1.3.0",
+    "eslint-plugin-standard": "^1.3.2",
+    "imagemin-cli": "^3.0.0",
+    "mkdirp": "^0.5.1",
+    "node-sass": "^3.7.0",
+    "npm-run-all": "^2.1.1",
+    "onchange": "^2.4.0",
+    "postcss-cli": "^2.5.2",
+    "rimraf": "^2.5.4",
+    "stylelint": "^7.8.0",
+    "svg-sprite-generator": "0.0.7",
+    "svgo": "^0.6.6",
+    "uglify-js": "^2.6.2",
+    "archiver": "^2.0.3",
+    "del": "^3.0.0",
+    "wp-pot": "^1.3.5",
+    "wiredep": "^4.0.0"    
+  }
+}
