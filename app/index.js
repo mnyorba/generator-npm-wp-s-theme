@@ -348,7 +348,7 @@ module.exports = generators.Base.extend({
         this.npmInstall(['archiver'], { 'saveDev': true, 'global': true });
         this.npmInstall(['del'], { 'saveDev': true, 'global': true });
         this.npmInstall(['wp-pot'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['wiredep'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['wiredep-cli'], { 'saveDev': true, 'global': true });
       }
     }
   },
