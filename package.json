@@ -7,7 +7,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mnyorba/npm-wp-s-theme.git"
+    "url": "https://github.com/mnyorba/generator-npm-wp-s-theme.git"
   },
   "keywords": [
     "yeoman-generator",
