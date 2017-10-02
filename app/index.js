@@ -93,8 +93,14 @@ module.exports = generators.Base.extend({
         },
         {
           type: 'confirm',
-          name: 'jshintrc',
-          message: 'Would you like to add a ' + chalk.white('.jshintrc') + ' file?',
+          name: 'eslintrc',
+          message: 'Would you like to add a ' + chalk.white('.eslintrc') + ' file?',
+          default: true
+        },
+        {
+          type: 'confirm',
+          name: 'stylelintrc',
+          message: 'Would you like to add a ' + chalk.white('.stylelintrc') + ' file?',
           default: true
         },
         {
@@ -295,10 +301,16 @@ module.exports = generators.Base.extend({
         );
       }
 
-      if (this.props.jshintrc) {
+      if (this.props.eslintrc) {
         this.fs.copy(
-          this.templatePath('_jshintrc'),
-          this.destinationPath('.jshintrc')
+          this.templatePath('_eslintrc'),
+          this.destinationPath('.eslintrc')
+        );
+
+      if (this.props.stylelintrc) {
+        this.fs.copy(
+          this.templatePath('_stylelintrc'),
+          this.destinationPath('.stylelintrc')
         );
       }
 
@@ -331,7 +343,10 @@ module.exports = generators.Base.extend({
         this.npmInstall(['autoprefixer'], { 'saveDev': true, 'global': true });
         this.npmInstall(['browser-sync'], { 'saveDev': true, 'global': true });
         this.npmInstall(['eslint'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['eslint-config-google'], { 'saveDev': true, 'global': true });
         this.npmInstall(['eslint-config-standard'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['eslint-plugin-node'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['eslint-plugin-import'], { 'saveDev': true, 'global': true });
         this.npmInstall(['eslint-plugin-promise'], { 'saveDev': true, 'global': true });
         this.npmInstall(['eslint-plugin-standard'], { 'saveDev': true, 'global': true });
         this.npmInstall(['imagemin-cli'], { 'saveDev': true, 'global': true });
@@ -349,6 +364,8 @@ module.exports = generators.Base.extend({
         this.npmInstall(['del'], { 'saveDev': true, 'global': true });
         this.npmInstall(['wp-pot'], { 'saveDev': true, 'global': true });
         this.npmInstall(['wiredep-cli'], { 'saveDev': true, 'global': true });
+          
+        this.npmInstall(['bower'], { 'saveDev': true, 'global': true });
       }
     }
   },
@@ -358,7 +375,7 @@ module.exports = generators.Base.extend({
       this.log(chalk.green('\nAll Done!!\n------------------------\n'));
 
       if (this.props.npmsetup) {
-        this.log('\nRun ' + chalk.green('gulp') + ' to start the development and ' + chalk.green('gulp build') + ' to create a zip file in ' + chalk.white('dist/' + this.props.themeslug + '.zip') + ' ready for production.');
+        this.log('\nRun ' + chalk.green('serve') + ' to start the development and ' + chalk.green('build') + ' to create a zip file in ' + chalk.white('dist/' + this.props.themeslug + '.zip') + ' ready for production.');
       }
     }
   },
