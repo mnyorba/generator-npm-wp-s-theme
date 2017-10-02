@@ -8,6 +8,7 @@ var download = require('download');
 var downloadStatus = require('download-status');
 var walk = require('walk');
 var path = require('path');
+var outputFileSync = require('output-file-sync');
 
 module.exports = generators.Base.extend({
   prompting: {
@@ -93,8 +94,8 @@ module.exports = generators.Base.extend({
         },
         {
           type: 'confirm',
-          name: 'eslintrc',
-          message: 'Would you like to add a ' + chalk.white('.eslintrc') + ' file?',
+          name: 'eslintrc.json',
+          message: 'Would you like to add a ' + chalk.white('.eslintrc.json') + ' file?',
           default: true
         },
         {
@@ -139,6 +140,7 @@ module.exports = generators.Base.extend({
         .dest('.')
         .use(downloadStatus())
         .run(callback);
+      outputFileSync('sass/theme.scss', '/*!\n Theme Name: _s \n*/', 'utf-8');
     },
 
     deleteFiles: function deleteFiles() {
@@ -199,7 +201,7 @@ module.exports = generators.Base.extend({
 
             next();
           });
-        } else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss') {
+        } else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss') {
           fs.readFile(filePath, 'utf8', function (err,data) {
             if (err) {
               done(error);
@@ -301,10 +303,10 @@ module.exports = generators.Base.extend({
         );
       }
 
-      if (this.props.eslintrc) {
+      if (this.props.eslintrc.json) {
         this.fs.copy(
-          this.templatePath('_eslintrc'),
-          this.destinationPath('.eslintrc')
+          this.templatePath('_eslintrc.json'),
+          this.destinationPath('.eslintrc.json')
         );
       }
       
@@ -353,7 +355,7 @@ module.exports = generators.Base.extend({
         this.npmInstall(['imagemin-cli'], { 'saveDev': true, 'global': true });
         this.npmInstall(['mkdirp'], { 'saveDev': true, 'global': true });
         this.npmInstall(['node-sass'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['redrun'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['npm-run-all'], { 'saveDev': true, 'global': true });
         this.npmInstall(['onchange'], { 'saveDev': true, 'global': true });
         this.npmInstall(['postcss-cli'], { 'saveDev': true, 'global': true });
         this.npmInstall(['rimraf'], { 'saveDev': true, 'global': true });
