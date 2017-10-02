@@ -306,13 +306,14 @@ module.exports = generators.Base.extend({
           this.templatePath('_eslintrc'),
           this.destinationPath('.eslintrc')
         );
-
+      }
+      
       if (this.props.stylelintrc) {
         this.fs.copy(
           this.templatePath('_stylelintrc'),
           this.destinationPath('.stylelintrc')
         );
-      }
+      }            
 
       if (this.props.npmsetup) {
         this.fs.copyTpl(
