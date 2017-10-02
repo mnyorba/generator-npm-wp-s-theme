@@ -19,25 +19,26 @@
   ],
   "scripts": {
     "wiredep": "wiredep -s sass/style.scss --dependencies",
-    "scss": "node-sass --output-style expanded -o style.css sass/*.scss",
-    "serve": "browser-sync start --server --files \"sass/*.scss, js/*.js, **/*.php, !node_modules/**/*.html\"",
+    "scss": "node-sass --output-style expanded sass/style.scss > style.css | node-sass --output-style expanded sass/woocommerce.scss > woocommerce.css",
+    "serve": "browser-sync start --proxy \"<%= proxy_address %>/<%= proxy_domain %>\" --files \"sass/*.scss, js/*.js, **/*.php, !node_modules/**/*.html, !bower_components*.*\"",
     "autoprefixer": "postcss -u autoprefixer -r *.css",
-    "lint": "eslint js || true",
     "lint-scss": "stylelint sass/*.scss --syntax scss || true",
-    "build:css": "run-s lint-scss scss autoprefixer",
-    "build:js": "run-s lint uglify",
-    "watch:css": "onchange \"sass\" -- run-s build:css",
-    "watch:js": "onchange \"js\" -- run-s build:js",
-    "watch": "run-p serve watch:*",
+    "lint": "eslint js || true",
+    
+    "build:css": "redrun lint-scss scss -s autoprefixer",
+    "build:js": "redrun -s lint uglify",
+    "watch:css": "onchange \"sass\" -- redrun -s build:css",
+    "watch:js": "onchange \"js\" -- redrun-s build:js",
+    "watch": "redrun -p serve watch:*",
     
     "clean": "rimraf dist/{css/*,js/*,images/*}",
     "uglify": "mkdirp dist/js -p && uglifyjs src/js/*.js -m -o dist/js/app.js && uglifyjs src/js/*.js -m -c -o dist/js/app.min.js",
     "imagemin": "imagemin src/images/* -o dist/images",
     "icons": "svgo -f src/images/icons -o dist/images/icons && svg-sprite-generate -d dist/images/icons -o dist/images/icons/sprite.svg",
-    "build:images": "run-s imagemin icons",
-    "build": "run-s build:*",
-    "watch:images": "onchange \"src/images\" -- run-s build:images",
-    "postinstall": "run-s build watch"
+    "build:images": "redrun -s imagemin icons",
+    "build": "redrun -s build:*",
+    "watch:images": "onchange \"src/images\" -- redrun -s build:images",
+    "postinstall": "redrun -s build watch"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
