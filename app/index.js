@@ -106,6 +106,12 @@ module.exports = generators.Base.extend({
         },
         {
           type: 'confirm',
+          name: 'npmrc',
+          message: 'Would you like to add a ' + chalk.white('.npmrc') + ' file?',
+          default: true
+        },
+        {
+          type: 'confirm',
           name: 'npmsetup',
           message: 'Would you like to setup a configuration ready to use?',
           default: true
@@ -314,6 +320,13 @@ module.exports = generators.Base.extend({
         this.fs.copy(
           this.templatePath('_stylelintrc'),
           this.destinationPath('.stylelintrc')
+        );
+      }            
+      
+      if (this.props.npmrc) {
+        this.fs.copy(
+          this.templatePath('_npmrc'),
+          this.destinationPath('.npmrc')
         );
       }            
 
