@@ -1,6 +1,6 @@
 {
   "name": "<%= package_name %>",
-  "version": "0.0.4",
+  "version": "0.0.9",
   "description": "<%= package_description %>",
   "author": "<%= package_author %>",
   "license": "MIT",
@@ -19,15 +19,23 @@
   ],
   "scripts": {
     "wiredep": "wiredep -s sass/style.scss --dependencies",
-    "scss": "node-sass --output-style expanded sass/style.scss > style.css | node-sass --output-style expanded sass/woocommerce.scss > woocommerce.css",
-    "serve": "browser-sync start --proxy \"<%= proxy_address %>/<%= proxy_domain %>\" --files \"*.css, js/*.js, **/*.php, !node_modules/**/*.html, !bower_components*.*\"",
-    "autoprefixer": "postcss -u autoprefixer -r *.css",
-    "lint-scss": "stylelint sass/theme.scss --syntax scss && stylelint sass/woocommerce.scss --syntax scss",
-    "lint": "eslint js",
     
-    "build:css": "run -p lint-scss scss autoprefixer",
+    "scss:style": "node-sass --output-style expanded sass/style.scss > style.css",
+    "scss:woocommerce": "node-sass --output-style expanded sass/woocommerce.scss > woocommerce.css",
+    "scss": "run-p  --continue-on-error --print-label --silent scss:*",
+    
+    "serve": "browser-sync start --proxy \"<%= proxy_address %>/<%= proxy_domain %>\" --files \"*.scss, js/*.js, **/*.php, !node_modules/**/*.html, !bower_components*.*\"",
+    "autoprefixer": "postcss -u autoprefixer -r *.css",
+    
+    "lint-scss:style": "stylelint sass/theme.scss --syntax scss",
+    "lint-scss:woocommerce": "stylelint sass/woocommerce.scss --syntax scss",
+    "lint-scss": "run-s -c lint-scss:*",
+    
+    "lint": "eslint js/*.js",
+    
+    "build:css": "run-p lint-scss scss",
     "build:js": "run-s lint uglify",
-    "watch:css": "onchange \"sass\" -- run-s build:css",
+    "watch:css": "onchange \"sass\" -- run-s build:css autoprefixer",
     "watch:js": "onchange \"js\" -- run-s build:js",
     "watch": "run-p serve watch:*",
     

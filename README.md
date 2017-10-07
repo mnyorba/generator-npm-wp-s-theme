@@ -36,51 +36,50 @@ yo npm-wp-s-theme
 ```
 
 ## Usage
-### `serve`
-  `browser-sync start --server --files 'dist/css/*.css, dist/js/*.js, **/*.html, !node_modules/**/*.html'`
+### `watch`
+  `run-p serve watch:*`
+
+  Run the following tasks simultaneously: `serve`, `watch:css`, `watch:js` & `watch:images`. When a .scss or .js file changes, the task will compile .scss and .js files, and the server will be notified of the change. Any browser connected to the server will then inject the new file
+
+#### `serve`
+  `browser-sync start --proxy \"< host >/< theme >\" --files \"*.scss, js/*.js, **/*.php, !node_modules/**/*.html, !bower_components*.*\`
 
   Start a new server and watch for CSS & JS file changes in the `dist` folder
 
-### `build:css`
-  `run-s scss autoprefixer`
+#### `build:css`
+  `run-p scss:*`
 
-  Alias to run the `scss` and `autoprefixer` tasks. Compiles Scss to CSS & add vendor prefixes
+  Alias to run the all `scss` tasks.
 
-### `build:js`
+#### `build:js`
   `run-s lint concat uglify`
 
   Alias to run the `lint`, `concat` and `uglify` tasks. Lints JS, combines `src` JS files & uglifies the output
 
-### `build:images`
+#### `build:images`
   `run-s imagemin icons`
 
   Alias to run the `imagemin` and `icons` tasks. Compresses images, generates an SVG sprite from a folder of separate SVGs
 
-### `build`
+#### `build`
   `run-s build:*`
 
   Alias to run all of the `build` commands
 
-### `watch:css`
-  `onchange 'src/**/*.scss' -- run-s build:css`
+#### `watch:css`
+  `onchange 'src/**/*.scss' -- run-s build:css autoprefixer`
 
-  Watches for any .scss file in `src` to change, then runs the `build:css` task
+  Watches for any .scss file in `src` to change, then runs the `build:css` and `autoprefixer` tasks. Compiles Scss to CSS & add vendor prefixes
 
-### `watch:js`
+#### `watch:js`
   `onchange 'src/**/*.js' -- run-s build:js`
 
   Watches for any .js file in `src` to change, then runs the `build:js` task
 
-### `watch:images`
+#### `watch:images`
   `onchange 'src/images/**/*' -- run-s build:images`
 
   Watches for any images in `src` to change, then runs the `build:images` task
-
-### `watch`
-  `run-p serve watch:*`
-
-  Run the following tasks simultaneously: `serve`, `watch:css`, `watch:js` & `watch:images`. When a .scss or .js file changes in `src` or an image changes in `src/images`, the task will compile the changes to `dist`, and the server will be notified of the change. Any browser connected to the server will then inject the new file from `dist`
-
 
 ## Bower usage
 - Run `bower install --save <package>` to install frontend dependencies
