@@ -147,8 +147,15 @@ module.exports = generators.Base.extend({
         .use(downloadStatus())
         .run(callback);
       outputFileSync('sass/theme.scss', '/*!\n Theme Name: _s \n*/', 'utf-8');
-      outputFileSync('css');
-      outputFileSync('images');
+      if ( !fs.existsSync('css') ) {
+        fs.mkdirSync('css');
+      }
+      if ( !fs.existsSync('fonts') ) {
+        fs.mkdirSync('fonts');
+      }
+      if ( !fs.existsSync('images') ) {
+        fs.mkdirSync('images');
+      }
     },
 
     deleteFiles: function deleteFiles() {
