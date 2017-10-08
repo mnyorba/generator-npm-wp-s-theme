@@ -147,6 +147,8 @@ module.exports = generators.Base.extend({
         .use(downloadStatus())
         .run(callback);
       outputFileSync('sass/theme.scss', '/*!\n Theme Name: _s \n*/', 'utf-8');
+      outputFileSync('css');
+      outputFileSync('images');
     },
 
     deleteFiles: function deleteFiles() {
@@ -207,7 +209,7 @@ module.exports = generators.Base.extend({
 
             next();
           });
-        } else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss') {
+        } else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss' || fileStats.name == 'theme.scss') {
           fs.readFile(filePath, 'utf8', function (err,data) {
             if (err) {
               done(error);
@@ -223,6 +225,7 @@ module.exports = generators.Base.extend({
             result = result.replace(/(Text Domain: )(.+)/g, '$1' + _this.props.themeslug);
             result = result.replace(/_s is based on Underscores/g, _this.props.themename + ' is based on Underscores');
             result = result.replace(/\@import "variables-site\/variables-site";/g, '\n\n// bower:scss' + '\n\n// endbower\n\n' + '\n\n@import "variables-site\/variables-site";');
+            result = result.replace(/\@import "media\/media";/g, '@import "media\/media";' + '\n/*--------------------------------------------------------------\n' + '# Theme\n' + '--------------------------------------------------------------*/\n' + '@import "theme";/n');
 
             fs.writeFile(filePath, result, 'utf8', function (err) {
               if (err) {
@@ -376,6 +379,7 @@ module.exports = generators.Base.extend({
         this.npmInstall(['uglify-js'], { 'saveDev': true, 'global': true });
         this.npmInstall(['svg-sprite-generator'], { 'saveDev': true, 'global': true });
         this.npmInstall(['svgo'], { 'saveDev': true, 'global': true });        
+        this.npmInstall(['output-file-sync'], { 'saveDev': true, 'global': true });
         this.npmInstall(['archiver'], { 'saveDev': true, 'global': true });
         this.npmInstall(['del'], { 'saveDev': true, 'global': true });
         this.npmInstall(['wp-pot'], { 'saveDev': true, 'global': true });
