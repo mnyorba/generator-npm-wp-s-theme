@@ -93,8 +93,13 @@ module.exports = generators.Base.extend({
         },
         {
           type: 'confirm',
-          name: 'eslintrc_stylelintrc',
+          name: 'eslintrc.json',
           message: 'Would you like to add a ' + chalk.white('.eslintrc.json') + ' file?',
+          default: true
+        },
+        {
+          type: 'confirm',
+          name: 'stylelintrc',
           message: 'Would you like to add a ' + chalk.white('.stylelintrc') + ' file?',
           default: true
         },
@@ -102,12 +107,6 @@ module.exports = generators.Base.extend({
           type: 'confirm',
           name: 'npmrc',
           message: 'Would you like to add a ' + chalk.white('.npmrc') + ' file?',
-          default: true
-        },
-        {
-          type: 'confirm',
-          name: 'gulpfile',
-          message: 'Would you like to add a ' + chalk.white('.gulpfile.js') + ' file?',
           default: true
         },
         {
@@ -323,24 +322,22 @@ module.exports = generators.Base.extend({
         this.fs.copy(
           this.templatePath('_eslintrc.json'),
           this.destinationPath('.eslintrc.json')
+        );
+      }
+      
+      if (this.props.stylelintrc) {
+        this.fs.copy(
           this.templatePath('_stylelintrc'),
           this.destinationPath('.stylelintrc')
         );
-      }          
+      }            
       
       if (this.props.npmrc) {
         this.fs.copy(
           this.templatePath('_npmrc'),
           this.destinationPath('.npmrc')
         );
-      }            
-      
-      if (this.props.gulpfile) {
-        this.fs.copy(
-          this.templatePath('_gulpfile.js'),
-          this.destinationPath('gulpfile.js')
-        );
-      }            
+      }                     
 
       if (this.props.npmsetup) {
         this.fs.copyTpl(
