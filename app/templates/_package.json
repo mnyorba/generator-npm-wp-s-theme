@@ -22,31 +22,39 @@
     
     "scss:style": "node-sass --output-style expanded sass/style.scss > style.css",
     "scss:woocommerce": "node-sass --output-style expanded sass/woocommerce.scss > woocommerce.css",
-    "scss": "run-p  --continue-on-error --print-label --silent scss:*",
+    "scss": "run-p  --continue-on-error --print-label --silent --aggregate-output scss:*",
     
     "serve": "browser-sync start --proxy \"<%= proxy_address %>/<%= proxy_domain %>\" --files \"*.scss, js/*.js, **/*.php, !node_modules/**/*.html, !bower_components*.*\"",
-    "autoprefixer": "postcss -u autoprefixer -r *.css",
+    "autoprefixer": "postcss --use autoprefixer --autoprefixer.browsers \"> 1%, last 12 versions, Firefox ESR\" --replace *.css",
+    
+    "uglify": "mkdirp dist/js -p && uglifyjs js/*.js -m -o dist/js/app.js && uglifyjs js/*.js -m -c -o dist/js/app.min.js",
     
     "lint-scss:style": "stylelint sass/theme.scss --syntax scss",
     "lint-scss:woocommerce": "stylelint sass/woocommerce.scss --syntax scss",
-    "lint-scss": "run-s -c lint-scss:*",
+    "lint-scss": "run-p --continue-on-error --print-label --silent --aggregate-output lint-scss:*",
     
     "lint": "eslint js/*.js",
     
     "build:css": "run-p lint-scss scss",
     "build:js": "run-s lint uglify",
-    "watch:css": "onchange \"sass\" -- run-s build:css autoprefixer",
-    "watch:js": "onchange \"js\" -- run-s build:js",
+    
+    "watch-lint:css": "onchange \"sass\" -- run-s build:css autoprefixer",
+    "watch-lint:js": "onchange \"js\" -- run-s build:js",
+    "watch-lint": "run-p serve watch-lint:*",
+    
+    "watch:css": "onchange \"sass\" -- run-s scss autoprefixer",
+    "watch:js": "onchange \"js\" -- run-s uglify",
     "watch": "run-p serve watch:*",
     
-    "clean": "rimraf dist/{css/*,js/*,images/*}",
-    "uglify": "mkdirp dist/js -p && uglifyjs js/*.js -m -o dist/js/app.js && uglifyjs js/*.js -m -c -o dist/js/app.min.js",
-    "imagemin": "imagemin images/* -o dist/images",
-    "icons": "svgo -f images/icons -o dist/images/icons && svg-sprite-generate -d dist/images/icons -o dist/images/icons/sprite.svg",
-    "build:images": "run-s imagemin icons",
-    "build": "run-s build:*",
+    "imagemin": "imagemin images/**/*.{jpg,png} -o dist/images",
+    
+    "build:images": "run-s imagemin",
     "watch:images": "onchange \"images\" -- run-s build:images",
-    "postinstall": "run-s build watch"
+    "build": "run-s mkdirp dist -p clean build:*",    
+    
+    "clean": "rimraf dist/**/*",
+    "copy": "gulp build-copy",
+    "postinstall": "run-s build:*"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
@@ -62,12 +70,11 @@
     "onchange": "^2.4.0",
     "postcss-cli": "^2.5.2",
     "rimraf": "^2.5.4",
+    "gulp-cli": "^3.10.10",
+
     "stylelint": "^7.8.0",
-    "svg-sprite-generator": "0.0.7",
-    "svgo": "^0.6.6",
     "uglify-js": "^2.6.2",
     "archiver": "^2.0.3",
-    "del": "^3.0.0",
     "wp-pot": "^1.3.5",
     "wiredep-cli": "^0.1.0"    
   }
