@@ -93,13 +93,8 @@ module.exports = generators.Base.extend({
         },
         {
           type: 'confirm',
-          name: 'eslintrc.json',
+          name: 'eslintrc_stylelintrc',
           message: 'Would you like to add a ' + chalk.white('.eslintrc.json') + ' file?',
-          default: true
-        },
-        {
-          type: 'confirm',
-          name: 'stylelintrc',
           message: 'Would you like to add a ' + chalk.white('.stylelintrc') + ' file?',
           default: true
         },
@@ -328,15 +323,10 @@ module.exports = generators.Base.extend({
         this.fs.copy(
           this.templatePath('_eslintrc.json'),
           this.destinationPath('.eslintrc.json')
-        );
-      }
-      
-      if (this.props.stylelintrc) {
-        this.fs.copy(
           this.templatePath('_stylelintrc'),
           this.destinationPath('.stylelintrc')
         );
-      }            
+      }          
       
       if (this.props.npmrc) {
         this.fs.copy(
