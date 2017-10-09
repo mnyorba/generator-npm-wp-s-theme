@@ -236,7 +236,7 @@ module.exports = generators.Base.extend({
             result = result.replace(/(Description: )(.+)/g, '$1' + _this.props.description);
             result = result.replace(/(Text Domain: )(.+)/g, '$1' + _this.props.themeslug);
             result = result.replace(/_s is based on Underscores/g, _this.props.themename + ' is based on Underscores');
-            result = result.replace(/\@import "variables-site\/variables-site";/g, '\n// bower:scss' + '\n\n// endbower\n' + '\n@import "variables-site\/variables-site";');
+            result = result.replace(/\@import "variables-site\/variables-site";/g, '\n\n// bower:scss' + '\n\n// endbower\n' + '\n\n@import "variables-site\/variables-site";');
             result = result.replace(/\@import "media\/media";/g, '@import "media\/media";' + '\n/*--------------------------------------------------------------\n\n' + '# Theme\n' + '--------------------------------------------------------------*/\n' + '@import "theme";\n');
 
             fs.writeFile(filePath, result, 'utf8', function (err) {
