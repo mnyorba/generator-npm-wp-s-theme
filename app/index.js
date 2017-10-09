@@ -396,7 +396,7 @@ module.exports = generators.Base.extend({
   end: {
     endMessage: function endMessage() {
       if (this.props.npmsetup) {
-        this.spawnCommand('npm link gulp', ['']);
+        this.spawnCommand('npm link ', ['gulp']);
       }
       this.log(chalk.green('\nAll Done!!\n------------------------\n'));
 
