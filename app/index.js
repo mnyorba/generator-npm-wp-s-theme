@@ -111,6 +111,12 @@ module.exports = generators.Base.extend({
         },
         {
           type: 'confirm',
+          name: 'gulpfile.js',
+          message: 'Would you like to add a ' + chalk.white('.gulpfile.js') + ' file?',
+          default: true
+        },
+        {
+          type: 'confirm',
           name: 'npmsetup',
           message: 'Would you like to setup a configuration ready to use?',
           default: true
@@ -230,8 +236,8 @@ module.exports = generators.Base.extend({
             result = result.replace(/(Description: )(.+)/g, '$1' + _this.props.description);
             result = result.replace(/(Text Domain: )(.+)/g, '$1' + _this.props.themeslug);
             result = result.replace(/_s is based on Underscores/g, _this.props.themename + ' is based on Underscores');
-            result = result.replace(/\@import "variables-site\/variables-site";/g, '\n\n// bower:scss' + '\n\n// endbower\n\n' + '\n\n@import "variables-site\/variables-site";');
-            result = result.replace(/\@import "media\/media";/g, '@import "media\/media";' + '\n/*--------------------------------------------------------------\n' + '# Theme\n' + '--------------------------------------------------------------*/\n' + '@import "theme";\n');
+            result = result.replace(/\@import "variables-site\/variables-site";/g, '\n// bower:scss' + '\n\n// endbower\n' + '\n@import "variables-site\/variables-site";');
+            result = result.replace(/\@import "media\/media";/g, '@import "media\/media";' + '\n/*--------------------------------------------------------------\n\n' + '# Theme\n' + '--------------------------------------------------------------*/\n' + '@import "theme";\n');
 
             fs.writeFile(filePath, result, 'utf8', function (err) {
               if (err) {
@@ -338,6 +344,13 @@ module.exports = generators.Base.extend({
           this.destinationPath('.npmrc')
         );
       }            
+      
+      if (this.props.gulpfile.js) {
+        this.fs.copy(
+          this.templatePath('_gulpfile.js'),
+          this.destinationPath('gulpfile.js')
+        );
+      }            
 
       if (this.props.npmsetup) {
         this.fs.copyTpl(
@@ -383,12 +396,11 @@ module.exports = generators.Base.extend({
         this.npmInstall(['rimraf'], { 'saveDev': true, 'global': true });
         this.npmInstall(['stylelint'], { 'saveDev': true, 'global': true });
         this.npmInstall(['uglify-js'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['archiver'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['gulp-cli'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['gulp'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['gulp-zip'], { 'saveDev': true, 'global': true });
         this.npmInstall(['del'], { 'saveDev': true, 'global': true });
         this.npmInstall(['wp-pot'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['wiredep-cli'], { 'saveDev': true, 'global': true });
-          
+        this.npmInstall(['wiredep-cli'], { 'saveDev': true, 'global': true });          
         this.npmInstall(['bower'], { 'saveDev': true, 'global': true });
       }
     }
@@ -396,6 +408,9 @@ module.exports = generators.Base.extend({
 
   end: {
     endMessage: function endMessage() {
+      if (this.props.npmsetup) {
+        this.spawnCommand('npm', ['link gulp']);
+      }
       this.log(chalk.green('\nAll Done!!\n------------------------\n'));
 
       if (this.props.npmsetup) {
