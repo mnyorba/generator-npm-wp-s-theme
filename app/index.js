@@ -111,7 +111,7 @@ module.exports = generators.Base.extend({
         },
         {
           type: 'confirm',
-          name: 'gulpfile',
+          name: 'gulpfile.js',
           message: 'Would you like to add a ' + chalk.white('gulpfile.js') + ' file?',
           default: true
         },
@@ -236,7 +236,7 @@ module.exports = generators.Base.extend({
             result = result.replace(/(Description: )(.+)/g, '$1' + _this.props.description);
             result = result.replace(/(Text Domain: )(.+)/g, '$1' + _this.props.themeslug);
             result = result.replace(/_s is based on Underscores/g, _this.props.themename + ' is based on Underscores');
-            result = result.replace(/\@import "variables-site\/variables-site";/g, '\n// bower:scss' + '\n\n// endbower\n' + '\n@import "variables-site\/variables-site";');
+            result = result.replace(/\@import "variables-site\/variables-site";/g, '\n// bower:scss' + '\n// endbower\n\n' + '\n@import "variables-site\/variables-site";');
             result = result.replace(/\@import "media\/media";/g, '@import "media\/media";' + '\n/*--------------------------------------------------------------\n' + '# Theme\n' + '--------------------------------------------------------------*/\n' + '@import "theme";');
 
             fs.writeFile(filePath, result, 'utf8', function (err) {
@@ -343,12 +343,12 @@ module.exports = generators.Base.extend({
           this.templatePath('_npmrc'),
           this.destinationPath('.npmrc')
         );
-      } 
+      }
       
-      if (this.props.gulpfile) {
+      if (this.props.gulpfile.js) {
         this.fs.copy(
           this.templatePath('_gulpfile.js'),
-          this.destinationPath('gulpfile.js')
+          this.destinationPath('.gulpfile.js')
         );
       }            
 
