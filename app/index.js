@@ -111,7 +111,7 @@ module.exports = generators.Base.extend({
         },
         {
           type: 'confirm',
-          name: 'gulpfile.js',
+          name: 'gulpfile',
           message: 'Would you like to add a ' + chalk.white('.gulpfile.js') + ' file?',
           default: true
         },
@@ -345,7 +345,7 @@ module.exports = generators.Base.extend({
         );
       }            
       
-      if (this.props.gulpfile.js) {
+      if (this.props.gulpfile) {
         this.fs.copy(
           this.templatePath('_gulpfile.js'),
           this.destinationPath('gulpfile.js')
