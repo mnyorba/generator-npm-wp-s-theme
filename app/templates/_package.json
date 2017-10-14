@@ -24,7 +24,7 @@
     "scss:woocommerce": "node-sass --output-style expanded sass/woocommerce.scss > woocommerce.css",
     "scss": "run-p  --continue-on-error --print-label --silent --aggregate-output scss:*",
     
-    "serve": "browser-sync start --proxy \"<%= proxy_address %>/<%= proxy_domain %>\" --files \"*.scss, js/*.js, **/*.php, !node_modules/**/*.html, !bower_components*.*\"",
+    "serve": "browser-sync start --proxy \"<%= proxy_address %>/<%= proxy_domain %>\" --files \"*.css, js/*.js, **/*.php, !node_modules/**/*.html, !bower_components*.*\"",
     "autoprefixer": "postcss --use autoprefixer --autoprefixer.browsers \"> 1%, last 12 versions, Firefox ESR\" --replace *.css",
     
     "uglify": "mkdirp dist/js -p && uglifyjs js/*.js -m -o dist/js/app.js && uglifyjs js/*.js -m -c -o dist/js/app.min.js",
@@ -46,15 +46,14 @@
     "watch:js": "onchange \"js\" -- run-s uglify",
     "watch": "run-p serve watch:*",
     
-    "imagemin": "imagemin images/**/*.{jpg,png} -o dist/images",
+    "imagemin": "imagemin images/**/*.{jpg,png} -o dist/<%= package_name %>/images",
     
     "build:images": "run-s imagemin",
     "watch:images": "onchange \"images\" -- run-s build:images",
-    "build": "run-s mkdirp dist -p clean build:*",    
+    "build": "run-s clean copy",    
     
     "clean": "rimraf dist/**/*",
     "copy": "gulp build-copy",
-    "archive": "archiverjs dist/**/* --out-file=<%= package_name %>.zip",
     "postinstall": "run-s build:*"
   },
   "devDependencies": {
@@ -70,9 +69,8 @@
     "npm-run-all": "^4.1.1",
     "onchange": "^2.4.0",
     "postcss-cli": "^2.5.2",
-    "rimraf": "^2.5.4",
+    "rimraf": "^2.6.2",
     "gulp": "^3.9.1",
-    "gulp-zip": "^4.0.0",
     "stylelint": "^7.8.0",
     "uglify-js": "^2.6.2",
     "wp-pot": "^1.3.5",
