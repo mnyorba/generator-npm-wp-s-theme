@@ -368,10 +368,7 @@ module.exports = generators.Base.extend({
         this.npmInstall(['autoprefixer'], { 'saveDev': true, 'global': true });
         this.npmInstall(['browser-sync'], { 'saveDev': true, 'global': true });
         this.npmInstall(['eslint'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['eslint-config-google'], { 'saveDev': true, 'global': true });
         this.npmInstall(['eslint-config-standard'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['eslint-plugin-node'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['eslint-plugin-import'], { 'saveDev': true, 'global': true });
         this.npmInstall(['eslint-plugin-promise'], { 'saveDev': true, 'global': true });
         this.npmInstall(['eslint-plugin-standard'], { 'saveDev': true, 'global': true });
         this.npmInstall(['imagemin-cli'], { 'saveDev': true, 'global': true });
@@ -381,11 +378,9 @@ module.exports = generators.Base.extend({
         this.npmInstall(['onchange'], { 'saveDev': true, 'global': true });
         this.npmInstall(['postcss-cli'], { 'saveDev': true, 'global': true });
         this.npmInstall(['rimraf'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['gulp'], { 'saveDev': true, 'global': true });
         this.npmInstall(['stylelint'], { 'saveDev': true, 'global': true });
         this.npmInstall(['uglify-js'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['gulp'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['gulp-zip'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['del'], { 'saveDev': true, 'global': true });
         this.npmInstall(['wp-pot'], { 'saveDev': true, 'global': true });
         this.npmInstall(['wiredep-cli'], { 'saveDev': true, 'global': true });          
         this.npmInstall(['bower'], { 'saveDev': true, 'global': true });
@@ -401,8 +396,7 @@ module.exports = generators.Base.extend({
       this.log(chalk.green('\nAll Done!!\n------------------------\n'));
 
       if (this.props.npmsetup) {
-        this.log('\nWarning!\n' + chalk.green('npm run gulp') + ' for start development.');
-        this.log('\nRun ' + chalk.green('npm run watch') + ' to start the development and ' + chalk.green('npm run build') + ' to create theme in' + chalk.white('dist/' + this.props.themeslug) + ' ready for production.');
+        this.log('\nRun ' + chalk.green('serve') + ' to start the development and ' + chalk.green('build') + ' to create a zip file in ' + chalk.white('dist/' + this.props.themeslug + '.zip') + ' ready for production.');
       }
     }
   },
