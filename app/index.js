@@ -338,7 +338,7 @@ module.exports = generators.Base.extend({
         );
       }            
       
-      if (this.props.gulpfile) {
+      if (this.props.gulpfile.js) {
         this.fs.copy(
           this.templatePath('_gulpfile.js'),
           this.destinationPath('gulpfile.js')
