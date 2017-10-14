@@ -331,7 +331,7 @@ module.exports = generators.Base.extend({
           this.destinationPath('.stylelintrc')
         );
       }            
-
+      
       if (this.props.npmrc) {
         this.fs.copy(
           this.templatePath('_npmrc'),
@@ -390,11 +390,13 @@ module.exports = generators.Base.extend({
 
   end: {
     endMessage: function endMessage() {
+      if (this.props.npmsetup) {
+        this.log('\nWarning! \nRun: ' + chalk.green('run link gulp') + ' to start the development');
+      }
       this.log(chalk.green('\nAll Done!!\n------------------------\n'));
 
       if (this.props.npmsetup) {
-        this.log('\nWarning! \nRun ' + chalk.green('npm link gulp') + ' before start the development');
-        this.log('\nRun ' + chalk.green('npm run watch') + ' to start the development and ' + chalk.green('npm run build') + ' to create theme files in ' + chalk.white('dist/' + this.props.themeslug + '.zip') + ' ready for production.');
+        this.log('\nRun ' + chalk.green('npm run watch ') + ' to start the development and ' + chalk.green('npm run build') + ' to create a file in ' + chalk.white('dist/' + this.props.themeslug ) + ' ready for production.');
       }
     }
   },
