@@ -105,12 +105,6 @@ module.exports = generators.Base.extend({
         },
         {
           type: 'confirm',
-          name: 'gulpfile',
-          message: 'Would you like to add a ' + chalk.white('gulpfile.js') + ' file?',
-          default: true
-        },
-        {
-          type: 'confirm',
           name: 'npmrc',
           message: 'Would you like to add a ' + chalk.white('.npmrc') + ' file?',
           default: true
@@ -337,14 +331,7 @@ module.exports = generators.Base.extend({
           this.destinationPath('.stylelintrc')
         );
       }            
-      
-      if (this.props.gulpfile) {
-        this.fs.copy(
-          this.templatePath('_gulpfile.js'),
-          this.destinationPath('.gulpfile.js')
-        );
-      }            
-      
+
       if (this.props.npmrc) {
         this.fs.copy(
           this.templatePath('_npmrc'),
