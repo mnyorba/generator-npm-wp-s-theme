@@ -401,7 +401,8 @@ module.exports = generators.Base.extend({
       this.log(chalk.green('\nAll Done!!\n------------------------\n'));
 
       if (this.props.npmsetup) {
-        this.log('\nRun ' + chalk.green('serve') + ' to start the development and ' + chalk.green('build') + ' to create a zip file in ' + chalk.white('dist/' + this.props.themeslug + '.zip') + ' ready for production.');
+        this.log('\nWarning!\n' + chalk.green('npm run gulp') + ' for start development.');
+        this.log('\nRun ' + chalk.green('npm run watch') + ' to start the development and ' + chalk.green('npm run build') + ' to create theme in' + chalk.white('dist/' + this.props.themeslug) + ' ready for production.');
       }
     }
   },
