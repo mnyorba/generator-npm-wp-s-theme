@@ -380,10 +380,7 @@ module.exports = generators.Base.extend({
 
         this.npmInstall(['autoprefixer'], { 'saveDev': true, 'global': true });
         this.npmInstall(['browser-sync'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['eslint'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['eslint-config-standard'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['eslint-plugin-promise'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['eslint-plugin-standard'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['jscs'], { 'saveDev': true, 'global': true });
         this.npmInstall(['imagemin-cli'], { 'saveDev': true, 'global': true });
         this.npmInstall(['mkdirp'], { 'saveDev': true, 'global': true });
         this.npmInstall(['node-sass'], { 'saveDev': true, 'global': true });
