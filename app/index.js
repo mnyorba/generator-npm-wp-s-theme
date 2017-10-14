@@ -105,6 +105,12 @@ module.exports = generators.Base.extend({
         },
         {
           type: 'confirm',
+          name: 'gulpfile',
+          message: 'Would you like to add a ' + chalk.white('gulpfile.js') + ' file?',
+          default: true
+        },
+        {
+          type: 'confirm',
           name: 'npmrc',
           message: 'Would you like to add a ' + chalk.white('.npmrc') + ' file?',
           default: true
@@ -230,7 +236,7 @@ module.exports = generators.Base.extend({
             result = result.replace(/(Description: )(.+)/g, '$1' + _this.props.description);
             result = result.replace(/(Text Domain: )(.+)/g, '$1' + _this.props.themeslug);
             result = result.replace(/_s is based on Underscores/g, _this.props.themename + ' is based on Underscores');
-            result = result.replace(/\@import "variables-site\/variables-site";/g, '\n\n// bower:scss' + '\n\n// endbower' + '\n\n@import "variables-site\/variables-site";');
+            result = result.replace(/\@import "variables-site\/variables-site";/g, '\n// bower:scss' + '\n\n// endbower' + '\n\n@import "variables-site\/variables-site";');
             result = result.replace(/\@import "media\/media";/g, '@import "media\/media";' + '\n\n/*--------------------------------------------------------------\n\n' + '# Theme\n' + '--------------------------------------------------------------*/\n' + '@import "theme";\n');
 
             fs.writeFile(filePath, result, 'utf8', function (err) {
@@ -332,6 +338,13 @@ module.exports = generators.Base.extend({
         );
       }            
       
+      if (this.props.gulpfile) {
+        this.fs.copy(
+          this.templatePath('_gulpfile.js'),
+          this.destinationPath('.gulpfile.js')
+        );
+      }            
+      
       if (this.props.npmrc) {
         this.fs.copy(
           this.templatePath('_npmrc'),
@@ -390,13 +403,11 @@ module.exports = generators.Base.extend({
 
   end: {
     endMessage: function endMessage() {
-      if (this.props.npmsetup) {
-        this.spawnCommand('npm link ', ['gulp']);
-      }
       this.log(chalk.green('\nAll Done!!\n------------------------\n'));
 
       if (this.props.npmsetup) {
-        this.log('\nRun ' + chalk.green('serve') + ' to start the development and ' + chalk.green('build') + ' to create a zip file in ' + chalk.white('dist/' + this.props.themeslug + '.zip') + ' ready for production.');
+        this.log('\nWarning! \nRun ' + chalk.green('npm link gulp') + ' before start the development');
+        this.log('\nRun ' + chalk.green('npm run watch') + ' to start the development and ' + chalk.green('npm run build') + ' to create theme files in ' + chalk.white('dist/' + this.props.themeslug + '.zip') + ' ready for production.');
       }
     }
   },
