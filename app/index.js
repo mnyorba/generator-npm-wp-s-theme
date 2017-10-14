@@ -105,7 +105,7 @@ module.exports = generators.Base.extend({
         },
         {
           type: 'confirm',
-          name: 'gulpfile',
+          name: 'gulpfile.js',
           message: 'Would you like to add a ' + chalk.white('gulpfile.js') + ' file?',
           default: true
         },
@@ -178,7 +178,7 @@ module.exports = generators.Base.extend({
 
       del(unusedFiles).catch(function(error) {
         done(error);
-      });
+      })
       .then(paths => {
         this.log(chalk.cyan(paths.join('\n')));
 
