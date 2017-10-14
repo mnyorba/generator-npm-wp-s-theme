@@ -178,7 +178,7 @@ module.exports = generators.Base.extend({
 
       del(unusedFiles).catch(function(error) {
         done(error);
-      })
+      });
       .then(paths => {
         this.log(chalk.cyan(paths.join('\n')));
 
