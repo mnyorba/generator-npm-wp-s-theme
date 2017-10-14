@@ -167,7 +167,7 @@ module.exports = generators.Base.extend({
       var done = this.async();
       var dir = this.destinationRoot();
 
-      var unusedFiles = ['.jscsrc', '.jshintignore', '.travis.yml', 'codesniffer.ruleset.xml', 'CONTRIBUTING.md', 'README.md'];
+      var unusedFiles = ['.travis.yml', 'codesniffer.ruleset.xml', 'CONTRIBUTING.md', 'README.md'];
 
       this.log(chalk.yellow('\nDeleting some unused files...'));
 
