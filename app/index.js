@@ -105,6 +105,12 @@ module.exports = generators.Base.extend({
         },
         {
           type: 'confirm',
+          name: 'gulpfile',
+          message: 'Would you like to add a ' + chalk.white('gulpfile.js') + ' file?',
+          default: true
+        },
+        {
+          type: 'confirm',
           name: 'npmrc',
           message: 'Would you like to add a ' + chalk.white('.npmrc') + ' file?',
           default: true
@@ -332,6 +338,13 @@ module.exports = generators.Base.extend({
         );
       }            
       
+      if (this.props.gulpfile) {
+        this.fs.copy(
+          this.templatePath('_gulpfile.js'),
+          this.destinationPath('gulpfile.js')
+        );
+      }            
+      
       if (this.props.npmrc) {
         this.fs.copy(
           this.templatePath('_npmrc'),
@@ -391,7 +404,7 @@ module.exports = generators.Base.extend({
   end: {
     endMessage: function endMessage() {
       if (this.props.npmsetup) {
-        this.log('\nWarning! \nRun: ' + chalk.green('run link gulp') + ' to start the development');
+        this.log(chalk.red('\nWarning! \nRun: ') + chalk.yellow('npm link gulp') + ' to start the development theme');
       }
       this.log(chalk.green('\nAll Done!!\n------------------------\n'));
 
