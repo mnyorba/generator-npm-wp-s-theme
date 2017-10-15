@@ -9,7 +9,7 @@ var downloadStatus = require('download-status');
 var walk = require('walk');
 var path = require('path');
 
-module.exports = generators.Base.extend({
+module.exports = class extends Generator {
   prompting: {
     askToUser: function askToUser() {
       var done = this.async();
@@ -408,4 +408,4 @@ module.exports = generators.Base.extend({
       }
     }
   },
-});
+};
