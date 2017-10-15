@@ -93,26 +93,20 @@ module.exports = generators.Base.extend({
         },
         {
           type: 'confirm',
-          name: 'eslintrc.json',
-          message: 'Would you like to add a ' + chalk.white('.eslintrc.json') + ' file?',
-          default: true
-        },
-        {
-          type: 'confirm',
           name: 'stylelintrc',
           message: 'Would you like to add a ' + chalk.white('.stylelintrc') + ' file?',
           default: true
         },
         {
           type: 'confirm',
-          name: 'gulpfile.js',
-          message: 'Would you like to add a ' + chalk.white('gulpfile.js') + ' file?',
+          name: 'npmrc',
+          message: 'Would you like to add a ' + chalk.white('.npmrc') + ' file?',
           default: true
         },
         {
           type: 'confirm',
-          name: 'npmrc',
-          message: 'Would you like to add a ' + chalk.white('.npmrc') + ' file?',
+          name: 'gulpfile.js',
+          message: 'Would you like to add a ' + chalk.white('gulpfile.js') + ' file?',
           default: true
         },
         {
@@ -324,24 +318,10 @@ module.exports = generators.Base.extend({
         );
       }
 
-      if (this.props.eslintrc.json) {
-        this.fs.copy(
-          this.templatePath('_eslintrc.json'),
-          this.destinationPath('.eslintrc.json')
-        );
-      }
-      
       if (this.props.stylelintrc) {
         this.fs.copy(
           this.templatePath('_stylelintrc'),
           this.destinationPath('.stylelintrc')
-        );
-      }            
-      
-      if (this.props.gulpfile.js) {
-        this.fs.copy(
-          this.templatePath('_gulpfile.js'),
-          this.destinationPath('gulpfile.js')
         );
       }            
       
@@ -351,6 +331,16 @@ module.exports = generators.Base.extend({
           this.destinationPath('.npmrc')
         );
       }                     
+      
+      if (this.props.gulpfile.js) {
+        this.fs.copy(
+          this.templatePath('_gulpfile.js'),
+          this.destinationPath('gulpfile.js'),
+          {
+            package_name: this.props.themeslug,          
+          }
+        );
+      }            
 
       if (this.props.npmsetup) {
         this.fs.copyTpl(
@@ -391,7 +381,6 @@ module.exports = generators.Base.extend({
         this.npmInstall(['gulp'], { 'saveDev': true, 'global': true });
         this.npmInstall(['stylelint'], { 'saveDev': true, 'global': true });
         this.npmInstall(['uglify-js'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['wp-pot'], { 'saveDev': true, 'global': true });
         this.npmInstall(['wiredep-cli'], { 'saveDev': true, 'global': true });          
         this.npmInstall(['bower'], { 'saveDev': true, 'global': true });
       }
