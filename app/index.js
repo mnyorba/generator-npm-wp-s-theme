@@ -337,7 +337,16 @@ module.exports = generators.Base.extend({
           this.templatePath('_gulpfile.js'),
           this.destinationPath('gulpfile.js'),
           {
-            package_name: this.props.themeslug,          
+            package_name: this.props.themeslug,
+            package_description: this.props.description,
+            package_author: this.props.author,
+            proxy_address: this.props.proxyname,
+            proxy_domain: this.props.domenname,
+            theme_domain: this.props.themeslug,
+            package_name: this.props.themename,
+            theme_bugreport: this.props.bugreport,
+            author: this.props.author,
+            author_email: this.props.authoremail
           }
         );
       }            
