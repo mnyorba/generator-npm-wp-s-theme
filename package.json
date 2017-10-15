@@ -28,6 +28,7 @@
     "download-status": "^2.2.1",
     "lodash": "^4.17.4",
     "path": "^0.12.7",
+    "output-file-sync": "^2.0.0",
     "walk": "^2.3.9",
     "yeoman-generator": "^0.22.5",
     "yosay": "^2.0.1"
