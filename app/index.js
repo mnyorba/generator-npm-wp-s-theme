@@ -11,7 +11,7 @@ var path = require('path');
 
 module.exports = class extends Generator {
   prompting() {
-    askToUser: function askToUser() {
+    askToUser() {
       var done = this.async();
 
       this.log(yosay(
@@ -128,7 +128,7 @@ module.exports = class extends Generator {
   },
 
   writing() {
-    installUnderscores: function installUnderscores() {
+    installUnderscores() {
       var done = this.async();
       var callback = function (error, remote) {
         if (error) {
@@ -157,7 +157,7 @@ module.exports = class extends Generator {
       }
     },
 
-    deleteFiles: function deleteFiles() {
+    deleteFiles() {
       var done = this.async();
       var dir = this.destinationRoot();
 
@@ -180,7 +180,7 @@ module.exports = class extends Generator {
       });
     },
 
-    parseThemeFiles: function parseThemeFiles() {
+    parseThemeFiles() {
       var done = this.async();
       var _this = this;
       var walker;
@@ -301,7 +301,7 @@ module.exports = class extends Generator {
       });
     },
 
-    packageFiles: function packageFiles() {
+    packageFiles() {
       this.log(chalk.yellow('\nCopying configuration files...'));
 
       if (this.props.gitignore) {
@@ -373,7 +373,7 @@ module.exports = class extends Generator {
   },
 
   install() {
-    installPackages: function installPackages() {
+    installPackages() {
       if (this.props.npmsetup) {
         this.log(chalk.yellow('\nInstalling required packages...'));
 
@@ -397,7 +397,7 @@ module.exports = class extends Generator {
   },
 
   end() {
-    endMessage: function endMessage() {
+    endMessage() {
       if (this.props.npmsetup) {
         this.log(chalk.red('\nWarning! \nRun: ') + chalk.yellow('npm link gulp') + ' to start the development theme');
       }
