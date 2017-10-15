@@ -8,8 +8,12 @@
 * [List of available tasks](#list-of-available-tasks)
 * [Need help?](#need-help)
 
-## List of packages used
-[autoprefixer](https://github.com/postcss/autoprefixer), [browser-sync](https://github.com/Browsersync/browser-sync), [eslint](https://github.com/eslint/eslint), [imagemin-cli](https://github.com/imagemin/imagemin-cli), [node-sass](https://github.com/sass/node-sass), [onchange](https://github.com/Qard/onchange), [npm-run-all](https://github.com/mysticatea/npm-run-all), [postcss-cli](https://github.com/code42day/postcss-cli), [svgo](https://github.com/svg/svgo), [svg-sprite-generator](https://github.com/frexy/svg-sprite-generator), [uglify-js](https://github.com/mishoo/UglifyJS2), [mkdirp](https://github.com/substack/node-mkdirp), [rimraf](https://github.com/isaacs/rimraf), [stylelint](https://github.com/stylelint/stylelint), [archiver](https://github.com/archiverjs/node-archiver), [del](https://github.com/sindresorhus/del), [wp-pot](https://github.com/rasmusbe/wp-pot), [wiredep-cli](https://github.com/taptapship/wiredep-cli), [output-file-sync](https://github.com/shinnn/output-file-sync).
+## List of packages used:
+* #### for development theme:
+[autoprefixer](https://github.com/postcss/autoprefixer), [browser-sync](https://github.com/Browsersync/browser-sync), [jscs](https://github.com/jscs-dev/node-jscs), [imagemin-cli](https://github.com/imagemin/imagemin-cli), [mkdirp](https://github.com/substack/node-mkdirp),  [node-sass](https://github.com/sass/node-sass), [npm-run-all](https://github.com/mysticatea/npm-run-all), [onchange](https://github.com/Qard/onchange), [postcss-cli](https://github.com/code42day/postcss-cli), [rimraf](https://github.com/isaacs/rimraf), [gulp](https://github.com/gulpjs/gulp), [stylelint](https://github.com/stylelint/stylelint), [uglify-js](https://github.com/mishoo/UglifyJS2), [wiredep-cli](https://github.com/taptapship/wiredep-cli), [bower](https://github.com/bower/bower).
+
+* #### for download and generation clean theme:
+[chalk](https://github.com/chalk/chalk), [copy](https://github.com/jonschlinkert/copy), [del](https://github.com/sindresorhus/del), [download](https://github.com/kevva/download), [download-status](https://github.com/kevva/download-status), [lodash](https://github.com/lodash/lodash), [path](https://github.com/jinder/path), [walk](https://github.com/Daplie/node-walk), [yeoman-generator](https://github.com/yeoman/generator), [yosay](https://github.com/yeoman/yosay) .
 
 ## Installation
 
