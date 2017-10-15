@@ -9,9 +9,9 @@ var downloadStatus = require('download-status');
 var walk = require('walk');
 var path = require('path');
 
-module.exports = class extends Generator {
-  prompting() {
-    askToUser() {
+module.exports = generators.Base.extend({
+  prompting: {
+    askToUser: function askToUser() {
       var done = this.async();
 
       this.log(yosay(
@@ -127,8 +127,8 @@ module.exports = class extends Generator {
     }
   },
 
-  writing() {
-    installUnderscores() {
+  writing: {
+    installUnderscores: function installUnderscores() {
       var done = this.async();
       var callback = function (error, remote) {
         if (error) {
@@ -157,7 +157,7 @@ module.exports = class extends Generator {
       }
     },
 
-    deleteFiles() {
+    deleteFiles: function deleteFiles() {
       var done = this.async();
       var dir = this.destinationRoot();
 
@@ -180,7 +180,7 @@ module.exports = class extends Generator {
       });
     },
 
-    parseThemeFiles() {
+    parseThemeFiles: function parseThemeFiles() {
       var done = this.async();
       var _this = this;
       var walker;
@@ -301,7 +301,7 @@ module.exports = class extends Generator {
       });
     },
 
-    packageFiles() {
+    packageFiles: function packageFiles() {
       this.log(chalk.yellow('\nCopying configuration files...'));
 
       if (this.props.gitignore) {
@@ -372,8 +372,8 @@ module.exports = class extends Generator {
     }
   },
 
-  install() {
-    installPackages() {
+  install: {
+    installPackages: function installPackages() {
       if (this.props.npmsetup) {
         this.log(chalk.yellow('\nInstalling required packages...'));
 
@@ -396,8 +396,8 @@ module.exports = class extends Generator {
     }
   },
 
-  end() {
-    endMessage() {
+  end: {
+    endMessage: function endMessage() {
       if (this.props.npmsetup) {
         this.log(chalk.red('\nWarning! \nRun: ') + chalk.yellow('npm link gulp') + ' to start the development theme');
       }
@@ -408,4 +408,4 @@ module.exports = class extends Generator {
       }
     }
   },
-};
+});
