@@ -10,7 +10,7 @@ var walk = require('walk');
 var path = require('path');
 
 module.exports = class extends Generator {
-  prompting: {
+  prompting() {
     askToUser: function askToUser() {
       var done = this.async();
 
@@ -127,7 +127,7 @@ module.exports = class extends Generator {
     }
   },
 
-  writing: {
+  writing() {
     installUnderscores: function installUnderscores() {
       var done = this.async();
       var callback = function (error, remote) {
@@ -372,7 +372,7 @@ module.exports = class extends Generator {
     }
   },
 
-  install: {
+  install() {
     installPackages: function installPackages() {
       if (this.props.npmsetup) {
         this.log(chalk.yellow('\nInstalling required packages...'));
@@ -396,7 +396,7 @@ module.exports = class extends Generator {
     }
   },
 
-  end: {
+  end() {
     endMessage: function endMessage() {
       if (this.props.npmsetup) {
         this.log(chalk.red('\nWarning! \nRun: ') + chalk.yellow('npm link gulp') + ' to start the development theme');
