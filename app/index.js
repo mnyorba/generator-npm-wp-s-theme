@@ -389,6 +389,10 @@ module.exports = generators.Base.extend({
         this.npmInstall(['rimraf'], { 'saveDev': true, 'global': true });
         this.npmInstall(['gulp'], { 'saveDev': true, 'global': true });
         this.npmInstall(['stylelint'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['stylelint-config-recommended-scss'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['stylelint-config-standard'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['stylelint-order'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['stylelint-scss'], { 'saveDev': true, 'global': true });
         this.npmInstall(['uglify-js'], { 'saveDev': true, 'global': true });
         this.npmInstall(['wiredep-cli'], { 'saveDev': true, 'global': true });          
         this.npmInstall(['bower'], { 'saveDev': true, 'global': true });
