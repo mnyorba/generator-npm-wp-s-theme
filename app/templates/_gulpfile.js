@@ -11,6 +11,8 @@ var build_files = [
   '!bower_components/**',
   '!dist',
   '!dist/**',
+  '!maps',
+  '!maps/**',
   '!sass',
   '!sass/**',
   '!.git',
