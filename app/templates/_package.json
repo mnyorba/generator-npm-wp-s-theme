@@ -17,15 +17,27 @@
     "minify",
     "compress"
   ],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "Chrome >= 45",
+    "Firefox ESR",
+    "Edge >= 12",
+    "Explorer >= 10",
+    "iOS >= 9",
+    "Safari >= 9",
+    "Android >= 4.4",
+    "Opera >= 30"
+  ],
   "scripts": {
     "wiredep": "wiredep -s sass/style.scss --dependencies",
     
-    "scss:style": "node-sass --output-style expanded sass/style.scss > style.css",
-    "scss:woocommerce": "node-sass --output-style expanded sass/woocommerce.scss > woocommerce.css",
+    "scss:style": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 sass/style.scss style.css",
+    "scss:woocommerce": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 sass/woocommerce.scss woocommerce.css",
     "scss": "run-p  --continue-on-error --print-label --silent --aggregate-output scss:*",
     
     "serve": "browser-sync start --proxy \"<%= proxy_address %>/<%= proxy_domain %>\" --files \"*.css, js/*.js, **/*.php, !node_modules/**/*.html, !bower_components*.*\"",
-    "autoprefixer": "postcss --use autoprefixer --autoprefixer.browsers \"> 1%, last 12 versions, Firefox ESR\" --replace *.css",
+    "autoprefixer": "postcss --use autoprefixer --replace *.css",
     
     "uglify": "mkdirp dist/js && uglifyjs js/*.js -m -o dist/js/app.js && uglifyjs js/*.js -m -c -o dist/js/app.min.js",
     
@@ -48,9 +60,12 @@
     
     "imagemin": "imagemin images/**/*.{jpg,png} -o dist/<%= package_name %>/images",
     
+    "scss-build:style": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/style.scss dist/<%= package_name %>/style.css",
+    "scss-build:woocommerce": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/woocommerce.scss dist/<%= package_name %>/woocommerce.css",
+    "scss-build": "run-p  --continue-on-error --print-label --silent --aggregate-output scss:*",
     "build:images": "run-s imagemin",
     "watch:images": "onchange \"images\" -- run-s build:images",
-    "build": "run-s clean copy",    
+    "build": "run-s clean copy scss-build",    
     
     "clean": "rimraf dist/**/*",
     "copy": "gulp build-copy",
@@ -69,6 +84,10 @@
     "rimraf": "^2.6.2",
     "gulp": "^3.9.1",
     "stylelint": "^8.2.0",
+    "stylelint-config-recommended-scss": "^2.0.0",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-order": "^0.7.0",
+    "stylelint-scss": "^2.1.0",    
     "uglify-js": "^3.1.3",
     "wiredep-cli": "^0.1.0"    
   }
