@@ -29,6 +29,8 @@
     "Android >= 4.4",
     "Opera >= 30"
   ],
+  "dependencies": {},
+  "description": "Yeoman generator for a WordPress starter theme (using Underscores) with npm and other good stuff.",
   "scripts": {
     "wiredep": "wiredep -s sass/style.scss --dependencies",
     

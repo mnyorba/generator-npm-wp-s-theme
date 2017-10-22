@@ -215,7 +215,7 @@ module.exports = generators.Base.extend({
 
             next();
           });
-        } else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss' || fileStats.name == 'theme.scss') {
+        } else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss' || fileStats.name == 'theme.scss' || fileStats.name == 'gulpfile.js') {
           fs.readFile(filePath, 'utf8', function (err,data) {
             if (err) {
               done(error);
@@ -337,16 +337,7 @@ module.exports = generators.Base.extend({
           this.templatePath('_gulpfile.js'),
           this.destinationPath('gulpfile.js'),
           {
-            package_name: this.props.themeslug,
-            package_description: this.props.description,
-            package_author: this.props.author,
-            proxy_address: this.props.proxyname,
-            proxy_domain: this.props.domenname,
-            theme_domain: this.props.themeslug,
-            package_name: this.props.themename,
-            theme_bugreport: this.props.bugreport,
-            author: this.props.author,
-            author_email: this.props.authoremail
+            package_name: this.props.themeslug
           }
         );
       }            
