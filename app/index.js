@@ -209,7 +209,7 @@ module.exports = generators.Base.extend({
 
             next();
           });
-        } else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss' || fileStats.name == 'theme.scss') {
+        } else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss' || fileStats.name == 'theme.scss' || fileStats.name == 'gulpfile.js') {
           fs.readFile(filePath, 'utf8', function (err,data) {
             if (err) {
               done(error);
@@ -348,7 +348,7 @@ module.exports = generators.Base.extend({
           this.templatePath('_gulpfile.js'),
           this.destinationPath('gulpfile.js'),
           {
-            package_name: this.props.themeslug
+            theme_domain: this.props.themeslug
           }
         );
 	
@@ -363,8 +363,8 @@ module.exports = generators.Base.extend({
 
         this.npmInstall(['autoprefixer'], { 'saveDev': true, 'global': true });
         this.npmInstall(['browser-sync'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['jscs'], { 'saveDev': true, 'global': true });
         this.npmInstall(['imagemin-cli'], { 'saveDev': true, 'global': true });
+        this.npmInstall(['jscs'], { 'saveDev': true, 'global': true });
         this.npmInstall(['mkdirp'], { 'saveDev': true, 'global': true });
         this.npmInstall(['node-sass'], { 'saveDev': true, 'global': true });
         this.npmInstall(['npm-run-all'], { 'saveDev': true, 'global': true });
@@ -372,11 +372,6 @@ module.exports = generators.Base.extend({
         this.npmInstall(['postcss-cli'], { 'saveDev': true, 'global': true });
         this.npmInstall(['rimraf'], { 'saveDev': true, 'global': true });
         this.npmInstall(['gulp'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['stylelint'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['stylelint-config-recommended-scss'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['stylelint-config-standard'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['stylelint-order'], { 'saveDev': true, 'global': true });
-        this.npmInstall(['stylelint-scss'], { 'saveDev': true, 'global': true });
         this.npmInstall(['uglify-js'], { 'saveDev': true, 'global': true });
         this.npmInstall(['wiredep-cli'], { 'saveDev': true, 'global': true });          
         this.npmInstall(['bower'], { 'saveDev': true, 'global': true });

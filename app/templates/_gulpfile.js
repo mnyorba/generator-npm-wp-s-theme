@@ -30,5 +30,5 @@ var build_files = [
 
 gulp.task('build-copy', function() {
   return gulp.src(build_files)
-    .pipe(gulp.dest('dist/<%= package_name %>'));
+    .pipe(gulp.dest('dist/<%= theme_domain %>'));
 });

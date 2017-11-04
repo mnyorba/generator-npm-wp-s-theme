@@ -1,15 +1,15 @@
 {
-  "name": "<%= package_name %>",
-  "version": "0.1.29",
-  "description": "<%= package_description %>",
-  "author": "<%= package_author %>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mnyorba/generator-npm-wp-s-theme"
-  },
-  "bugs": "https://github.com/mnyorba/generator-npm-wp-s-theme/issues",
-  "keywords": [
+	"name": "<%= package_name %>",
+	"version": "0.1.29",
+	"description": "<%= package_description %>",
+	"author": "<%= package_author %>",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mnyorba/generator-npm-wp-s-theme"
+	},
+	"bugs": "https://github.com/mnyorba/generator-npm-wp-s-theme/issues",
+	"keywords": [
     "npm",
     "scripts",
     "npm scripts",
@@ -17,7 +17,7 @@
     "minify",
     "compress"
   ],
-  "browserslist": [
+	"browserslist": [
     "> 1%",
     "last 2 versions",
     "Chrome >= 45",
@@ -29,68 +29,52 @@
     "Android >= 4.4",
     "Opera >= 30"
   ],
-  "dependencies": {},
-  "description": "Yeoman generator for a WordPress starter theme (using Underscores) with npm and other good stuff.",
-  "scripts": {
-    "wiredep": "wiredep -s sass/style.scss --dependencies",
-	  
-    "scss:style": "node-sass --output-style expanded --source-map maps --source-map-contents false --source-map-embed true --precision 6 sass/style.scss style.css",
-    "scss:woocommerce": "node-sass --output-style expanded --source-map maps --source-map-contents false --source-map-embed true --precision 6 sass/woocommerce.scss woocommerce.css",	  
-    "scss": "run-p  --continue-on-error --print-label --silent --aggregate-output scss:*",
-    
-    "serve": "browser-sync start --proxy \"<%= proxy_address %>/<%= proxy_domain %>\" --files \"*.css, js/*.js, **/*.php, !node_modules/**/*.html, !bower_components*.*\"",
-    "autoprefixer": "postcss --use autoprefixer --replace *.css",
-    
-    "uglify": "mkdirp dist/js && uglifyjs js/*.js -m -o dist/js/app.js && uglifyjs js/*.js -m -c -o dist/js/app.min.js",
-    
-    "lint-scss:style": "stylelint sass/theme.scss --syntax scss",
-    "lint-scss:woocommerce": "stylelint sass/woocommerce.scss --syntax scss",
-    "lint-scss": "run-p --continue-on-error --print-label --silent --aggregate-output lint-scss:*",
-    
-    "lint": "jscs js",
-    
-    "build:css": "run-p lint-scss scss",
-    "build:js": "run-s lint uglify",
-    
-    "watch-lint:css": "onchange \"sass\" -- run-s build:css autoprefixer",
-    "watch-lint:js": "onchange \"js\" -- run-s build:js",
-    "watch-lint": "run-p serve watch-lint:*",
-    
-    "watch:css": "onchange \"sass\" -- run-s scss autoprefixer",
-    "watch:js": "onchange \"js\" -- run-s uglify",
-    "watch": "run-p serve watch:*",
-    
-    "imagemin": "imagemin images/**/*.{jpg,png} -o dist/<%= package_name %>/images",
-    
-    "scss-build:style": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/style.scss dist/<%= package_name %>/style.css",
-    "scss-build:woocommerce": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/woocommerce.scss dist/<%= package_name %>/woocommerce.css",
-    "scss-build": "run-p  --continue-on-error --print-label --silent --aggregate-output scss-build:*",
-    "build:images": "run-s imagemin",
-    "watch:images": "onchange \"images\" -- run-s build:images",
-    "build": "run-s clean copy scss-build",    
-    
-    "clean": "rimraf dist/**/*",
-    "copy": "gulp build-copy",
-    "postinstall": "run-s build:*"
-  },
-  "devDependencies": {
-    "autoprefixer": "^7.1.5",
-    "browser-sync": "^2.18.13",
-    "jscs": "^3.0.7",
-    "imagemin-cli": "^3.0.0",
-    "mkdirp": "^0.5.1",
-    "node-sass": "^4.5.3",
-    "npm-run-all": "^4.1.1",
-    "onchange": "^3.2.1",
-    "postcss-cli": "^4.1.1",
-    "rimraf": "^2.6.2",
-    "gulp": "^3.9.1",
-    "stylelint": "^8.2.0",
-    "stylelint-config-recommended-scss": "^2.0.0",
-    "stylelint-config-standard": "^17.0.0",
-    "stylelint-order": "^0.7.0",
-    "stylelint-scss": "^2.1.0",    
-    "uglify-js": "^3.1.3",
-    "wiredep-cli": "^0.1.0"    
-  }
+	"dependencies": {},
+	"description": "Yeoman generator for a WordPress starter theme (using Underscores) with npm and other good stuff.",
+	"scripts": {
+		"wiredep": "wiredep -s sass/style.scss --dependencies",
+
+		"scss:style": "node-sass --output-style expanded --source-map maps --source-map-contents false --source-map-embed true --precision 6 sass/style.scss style.css",
+		"scss:woocommerce": "node-sass --output-style expanded --source-map maps --source-map-contents false --source-map-embed true --precision 6 sass/woocommerce.scss woocommerce.css",
+		"scss": "run-p  --continue-on-error --print-label --silent --aggregate-output scss:*",
+
+		"serve": "browser-sync start --proxy \"<%= proxy_address %>/<%= proxy_domain %>\" --files \"*.css, js/*.js, **/*.php, !node_modules/**/*.html, !bower_components*.*\"",
+		"autoprefixer": "postcss --use autoprefixer --replace *.css",
+
+		"uglify": "mkdirp dist/<%= package_name %>/js && uglifyjs js/*.js -m -o dist/<%= package_name %>/js/app.js && uglifyjs js/*.js -m -c -o dist/<%= package_name %>/js/app.min.js",
+		"lint": "jscs js",
+
+		"watch:css": "onchange \"sass\" -- run-s scss autoprefixer",
+		"watch:js": "onchange \"js\" -- run-s lint uglify",
+		"watch": "run-p serve watch:*",
+
+		"imagemin": "imagemin images/**/*.{jpg,png} -o dist/<%= package_name %>/images",
+
+		"build-css:style": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/style.scss dist/<%= package_name %>/style.css",
+		"build-css:woocommerce": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/woocommerce.scss dist/<%= package_name %>/woocommerce.css",
+		"build-css": "run-p  --continue-on-error --print-label --silent --aggregate-output build-css:*",
+
+		"build:images": "run-s imagemin",
+		"watch:images": "onchange \"images\" -- run-s build:images",
+		"build": "run-s clean copy build-css:*",
+
+		"clean": "rimraf dist/**/*",
+		"copy": "gulp build-copy",
+		"postinstall": "run-s build:*"
+	},
+	"devDependencies": {
+		"autoprefixer": "^7.1.5",
+		"browser-sync": "^2.18.13",
+		"imagemin-cli": "^3.0.0",
+		"jscs": "^3.0.7",
+		"mkdirp": "^0.5.1",
+		"node-sass": "^4.5.3",
+		"npm-run-all": "^4.1.1",
+		"onchange": "^3.2.1",
+		"postcss-cli": "^4.1.1",
+		"rimraf": "^2.6.2",
+		"gulp": "^3.9.1",
+		"uglify-js": "^3.1.3",
+		"wiredep-cli": "^0.1.0"
+	}
 }
