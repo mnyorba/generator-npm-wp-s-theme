@@ -105,12 +105,6 @@ module.exports = generators.Base.extend({
         },
         {
           type: 'confirm',
-          name: 'gulpfile.js',
-          message: 'Would you like to add a ' + chalk.white('gulpfile.js') + ' file?',
-          default: true
-        },
-        {
-          type: 'confirm',
           name: 'npmsetup',
           message: 'Would you like to setup a configuration ready to use?',
           default: true
@@ -215,7 +209,7 @@ module.exports = generators.Base.extend({
 
             next();
           });
-        } else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss' || fileStats.name == 'theme.scss' || fileStats.name == 'gulpfile.js') {
+        } else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss' || fileStats.name == 'theme.scss') {
           fs.readFile(filePath, 'utf8', function (err,data) {
             if (err) {
               done(error);
@@ -330,17 +324,7 @@ module.exports = generators.Base.extend({
           this.templatePath('_npmrc'),
           this.destinationPath('.npmrc')
         );
-      }                     
-      
-      if (this.props.gulpfile.js) {
-        this.fs.copy(
-          this.templatePath('_gulpfile.js'),
-          this.destinationPath('gulpfile.js'),
-          {
-            package_name: this.props.themeslug
-          }
-        );
-      }            
+      }                           
 
       if (this.props.npmsetup) {
         this.fs.copyTpl(
@@ -359,6 +343,15 @@ module.exports = generators.Base.extend({
             author_email: this.props.authoremail
           }
         );
+		 
+        this.fs.copy(
+          this.templatePath('_gulpfile.js'),
+          this.destinationPath('gulpfile.js'),
+          {
+            package_name: this.props.themeslug
+          }
+        );
+	
       }
     }
   },
