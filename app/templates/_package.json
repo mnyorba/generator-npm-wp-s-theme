@@ -33,9 +33,9 @@
   "description": "Yeoman generator for a WordPress starter theme (using Underscores) with npm and other good stuff.",
   "scripts": {
     "wiredep": "wiredep -s sass/style.scss --dependencies",
-    
-    "scss:style": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 sass/style.scss style.css",
-    "scss:woocommerce": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 sass/woocommerce.scss woocommerce.css",
+	  
+    "scss:style": "node-sass --output-style expanded --source-map maps --source-map-contents false --source-map-embed true --precision 6 sass/style.scss style.css",
+    "scss:woocommerce": "node-sass --output-style expanded --source-map maps --source-map-contents false --source-map-embed true --precision 6 sass/woocommerce.scss woocommerce.css",	  
     "scss": "run-p  --continue-on-error --print-label --silent --aggregate-output scss:*",
     
     "serve": "browser-sync start --proxy \"<%= proxy_address %>/<%= proxy_domain %>\" --files \"*.css, js/*.js, **/*.php, !node_modules/**/*.html, !bower_components*.*\"",
@@ -64,7 +64,7 @@
     
     "scss-build:style": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/style.scss dist/<%= package_name %>/style.css",
     "scss-build:woocommerce": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/woocommerce.scss dist/<%= package_name %>/woocommerce.css",
-    "scss-build": "run-p  --continue-on-error --print-label --silent --aggregate-output scss:*",
+    "scss-build": "run-p  --continue-on-error --print-label --silent --aggregate-output scss-build:*",
     "build:images": "run-s imagemin",
     "watch:images": "onchange \"images\" -- run-s build:images",
     "build": "run-s clean copy scss-build",    
