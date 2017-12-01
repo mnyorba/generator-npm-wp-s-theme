@@ -161,7 +161,7 @@ module.exports = generators.Base.extend({
 			var done = this.async();
 			var dir = this.destinationRoot();
 
-			var unusedFiles = ['.travis.yml', 'codesniffer.ruleset.xml', 'CONTRIBUTING.md', 'README.md'];
+			var unusedFiles = [];
 
 			this.log(chalk.yellow('\nDeleting some unused files...'));
 
@@ -270,7 +270,7 @@ module.exports = generators.Base.extend({
 
 						var result;
 
-						result = data.replace(/Copyright (C) 2016 Automattic/g, 'Copyright (C) 2016 ' + _this.props.author);
+						result = data.replace(/Copyright (C) 2016 Automattic/g, 'Copyright (C) 2017 ' + _this.props.author);
 						result = result.replace(/Project-Id-Version: _s/g, 'Project-Id-Version: ' + _this.props.themename);
 						result = result.replace(/Report-Msgid-Bugs-To: https:\/\/wordpress.org\/tags\/_s/g, 'Report-Msgid-Bugs-To: ' + _this.props.bugreport);
 						result = result.replace(/Language-Team: LANGUAGE <LL@li\.org>/g, 'Language-Team: ' + _this.props.author + '<' + _this.props.authoremail + '>');
