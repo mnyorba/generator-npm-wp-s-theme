@@ -1,6 +1,6 @@
 {
 	"name": "<%= package_name %>",
-	"version": "0.1.29",
+	"version": "0.1.38",
 	"description": "<%= package_description %>",
 	"author": "<%= package_author %>",
 	"license": "MIT",
@@ -41,17 +41,17 @@
 		"serve": "browser-sync start --proxy \"<%= proxy_address %>/<%= proxy_domain %>\" --files \"*.css, js/*.js, **/*.php, !node_modules/**/*.html, !bower_components*.*\"",
 		"autoprefixer": "postcss --use autoprefixer --replace *.css",
 
-		"uglify": "mkdirp dist/<%= package_name %>/js && uglifyjs js/*.js -m -o dist/<%= package_name %>/js/app.js && uglifyjs js/*.js -m -c -o dist/<%= package_name %>/js/app.min.js",
+		"uglify": "mkdirp dist/js && uglifyjs js/*.js -m -o dist/js/app.js && uglifyjs js/*.js -m -c -o dist/js/app.min.js",
 		"lint": "jscs js",
 
 		"watch:css": "onchange \"sass\" -- run-s scss autoprefixer",
 		"watch:js": "onchange \"js\" -- run-s lint uglify",
 		"watch": "run-p serve watch:*",
 
-		"imagemin": "imagemin images/**/*.{jpg,png} -o dist/<%= package_name %>/images",
+		"imagemin": "imagemin images/**/*.{jpg,png} -o dist/images",
 
-		"build-css:style": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/style.scss dist/<%= package_name %>/style.css",
-		"build-css:woocommerce": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/woocommerce.scss dist/<%= package_name %>/woocommerce.css",
+		"build-css:style": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/style.scss dist/style.css",
+		"build-css:woocommerce": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/woocommerce.scss dist/woocommerce.css",
 		"build-css": "run-p  --continue-on-error --print-label --silent --aggregate-output build-css:*",
 
 		"build:images": "run-s imagemin",
