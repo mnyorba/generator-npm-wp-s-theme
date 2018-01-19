@@ -208,7 +208,7 @@ module.exports = class extends Generator {
 				var walker;
 				var options;
 				options = {
-					followLinks: false
+					followLinks: true
 				};
 				this.log(chalk.yellow('\nParsing theme files...'));
 
