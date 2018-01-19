@@ -149,8 +149,6 @@ module.exports = class extends Generator {
 		var done = this.async();
 		var dir = this.destinationRoot();
 		var unusedFiles = ['.travis.yml', 'codesniffer.ruleset.xml', 'README.md'];
-		var _this = this;
-		var walker;
 
 		// Download _s theme
 		this.log(chalk.yellow('\nLet\'s download the latest version of Underscores...'));
@@ -212,6 +210,8 @@ module.exports = class extends Generator {
 			})
 			.then(() => {
 				// Parsing theme files 
+				var _this = this;
+				var walker;
 
 				this.log(chalk.yellow('\nParsing theme files...'));
 
@@ -244,7 +244,8 @@ module.exports = class extends Generator {
 
 							next();
 						});
-				} else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss' || fileStats.name == 'theme.scss' || fileStats.name == 'gulpfile.js') {
+//				} else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss' || fileStats.name == 'theme.scss' || fileStats.name == 'gulpfile.js') {
+				} else if (path.extname(fileStats.name) == '.css' || fileStats.name == '.scss') {
 						fs.readFile(filePath, 'utf8', function (err, data) {
 							if (err) {
 								done(error);
