@@ -208,11 +208,11 @@ module.exports = class extends Generator {
 				var walker;
 				var options;
 				options = {
-					followLinks: true
+					followLinks: false
 				};
 				this.log(chalk.yellow('\nParsing theme files...'));
 
-				walker = walk.walk('.');
+				walker = walk.walk('../');
 
 				this.log(chalk.white('	Please wait...'));
 

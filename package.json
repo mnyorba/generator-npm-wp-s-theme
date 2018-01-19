@@ -9,60 +9,27 @@
   ],
   "main": "app/index.js",
   "keywords": [
-    "_s",
     "yeoman-generator",
+    "npm",
     "wordpress",
-    "yeoman-generator"
+    "wordpress-starter-theme",
+    "theme",
+    "underscores",
+    "_s"
   ],
-  "devDependencies": {},
   "dependencies": {
-    "bower": "^1.8.2",
     "chalk": "^2.1.0",
     "copy": "^0.3.1",
     "del": "^3.0.0",
     "download": "^6.2.5",
+    "lodash": "^4.17.4",
     "output-file-sync": "^2.0.0",
     "path": "^0.12.7",
     "walk": "^2.3.9",
     "wp-pot-cli": "^1.0.3",
     "yeoman-generator": "^2.0.2",
-    "yosay": "^2.0.1"
-  },
-  "jest": {
-    "testEnvironment": "node"
-  },
-  "scripts": {},
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.json": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "xo",
-      "prettier"
-    ],
-    "env": {
-      "jest": true,
-      "node": true
-    },
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "singleQuote": true,
-          "printWidth": 90
-        }
-      ]
-    },
-    "plugins": [
-      "prettier"
-    ]
+    "yosay": "^2.0.1",
+    "bower": "^1.8.2"
   },
   "repository": {
     "type": "git",
