@@ -259,7 +259,7 @@ module.exports = class extends Generator {
 							result = result.replace(/(Text Domain: )(.+)/g, '$1' + _this.themeSlug);
 							result = result.replace(/_s is based on Underscores/g, _this.themeName + ' is based on Underscores');
 							result = result.replace(/\@import "variables-site\/variables-site";/g, '\n\n// bower:scss' + '\n\n// endbower' + '\n\n@import "variables-site\/variables-site";');
-							result = result.replace(/\@import "media\/media";/g, '@import "media\/media";' + '\n\n/*--------------------------------------------------------------\n' + '# Theme\n' + '--------------------------------------------------------------*/\n' + '@import "theme";\n');
+							result = result.replace(/\@import "media\/media";/g, '@import "media\/media";' + '\n\n/*--------------------------------------------------------------\n\n' + '# Theme\n' + '--------------------------------------------------------------*/\n' + '@import "theme";\n');
 
 							fs.writeFile(filePath, result, 'utf8', function (err) {
 								if (err) {
@@ -328,13 +328,13 @@ module.exports = class extends Generator {
 					done();
 				});
 
-				this.log(chalk.blue('Done!'));
-			})
-			.catch(error => {
-				//				alert(error); 
-				// Error: Not Found
-				this.log(chalk.red('Error:', error));
+				this.log(chalk.blue('Parsing done!'));
 			});
+//			.catch(error => {
+//				//				alert(error); 
+//				// Error: Not Found
+//				this.log(chalk.red('Error:', error));
+//			});
 
 		// Copying configuration files
 		this.log(chalk.yellow('\nCopying configuration files...'));
@@ -392,93 +392,93 @@ module.exports = class extends Generator {
 	}
 
 	install() {
-//		if (this.npmsetup) {
-//			this.log(chalk.yellow('\nInstalling required packages...'));
-//
-//			this.npmInstall(['autoprefixer'], {
-//				'saveDev': true,
-//				'global': true
-//			});
-//			this.log(chalk.blue('autoprefixer'));
-//
-//			this.npmInstall(['browser-sync'], {
-//				'saveDev': true,
-//				'global': true
-//			});
-//			this.log(chalk.blue('browser-sync'));
-//
-//			this.npmInstall(['imagemin-cli'], {
-//				'saveDev': true,
-//				'global': true
-//			});
-//			this.log(chalk.blue('imagemin-cli'));
-//
-//			this.npmInstall(['jscs'], {
-//				'saveDev': true,
-//				'global': true
-//			});
-//			this.log(chalk.blue('jscs'));
-//
-//			this.npmInstall(['mkdirp'], {
-//				'saveDev': true,
-//				'global': true
-//			});
-//			this.log(chalk.blue('mkdirp'));
-//
-//			this.npmInstall(['node-sass'], {
-//				'saveDev': true,
-//				'global': true
-//			});
-//			this.log(chalk.blue('node-sass'));
-//
-//			this.npmInstall(['npm-run-all'], {
-//				'saveDev': true,
-//				'global': true
-//			});
-//			this.log(chalk.blue('npm-run-all'));
-//
-//			this.npmInstall(['onchange'], {
-//				'saveDev': true,
-//				'global': true
-//			});
-//			this.log(chalk.blue('onchange'));
-//
-//			this.npmInstall(['postcss-cli'], {
-//				'saveDev': true,
-//				'global': true
-//			});
-//			this.log(chalk.blue('postcss-cli'));
-//
-//			this.npmInstall(['rimraf'], {
-//				'saveDev': true,
-//				'global': true
-//			});
-//			this.log(chalk.blue('rimraf'));
-//
-//			this.npmInstall(['gulp'], {
-//				'saveDev': true,
-//				'global': true
-//			});
-//			this.log(chalk.blue('gulp'));
-//
-//			this.npmInstall(['uglify-js'], {
-//				'saveDev': true,
-//				'global': true
-//			});
-//			this.log(chalk.blue('uglify-js'));
-//
-//			this.npmInstall(['wiredep-cli'], {
-//				'saveDev': true,
-//				'global': true
-//			});
-//			this.log(chalk.blue('wiredep-cli'));
-//
-//			this.npmInstall(['bower'], {
-//				'saveDev': true,
-//				'global': true
-//			});
-//			this.log(chalk.blue('bower'));
-//		};
+		if (this.npmsetup) {
+			this.log(chalk.yellow('\nInstalling required packages...'));
+
+			this.npmInstall(['autoprefixer'], {
+				'saveDev': true,
+				'global': true
+			});
+			this.log(chalk.blue('autoprefixer'));
+
+			this.npmInstall(['browser-sync'], {
+				'saveDev': true,
+				'global': true
+			});
+			this.log(chalk.blue('browser-sync'));
+
+			this.npmInstall(['imagemin-cli'], {
+				'saveDev': true,
+				'global': true
+			});
+			this.log(chalk.blue('imagemin-cli'));
+
+			this.npmInstall(['jscs'], {
+				'saveDev': true,
+				'global': true
+			});
+			this.log(chalk.blue('jscs'));
+
+			this.npmInstall(['mkdirp'], {
+				'saveDev': true,
+				'global': true
+			});
+			this.log(chalk.blue('mkdirp'));
+
+			this.npmInstall(['node-sass'], {
+				'saveDev': true,
+				'global': true
+			});
+			this.log(chalk.blue('node-sass'));
+
+			this.npmInstall(['npm-run-all'], {
+				'saveDev': true,
+				'global': true
+			});
+			this.log(chalk.blue('npm-run-all'));
+
+			this.npmInstall(['onchange'], {
+				'saveDev': true,
+				'global': true
+			});
+			this.log(chalk.blue('onchange'));
+
+			this.npmInstall(['postcss-cli'], {
+				'saveDev': true,
+				'global': true
+			});
+			this.log(chalk.blue('postcss-cli'));
+
+			this.npmInstall(['rimraf'], {
+				'saveDev': true,
+				'global': true
+			});
+			this.log(chalk.blue('rimraf'));
+
+			this.npmInstall(['gulp'], {
+				'saveDev': true,
+				'global': true
+			});
+			this.log(chalk.blue('gulp'));
+
+			this.npmInstall(['uglify-js'], {
+				'saveDev': true,
+				'global': true
+			});
+			this.log(chalk.blue('uglify-js'));
+
+			this.npmInstall(['wiredep-cli'], {
+				'saveDev': true,
+				'global': true
+			});
+			this.log(chalk.blue('wiredep-cli'));
+
+			this.npmInstall(['bower'], {
+				'saveDev': true,
+				'global': true
+			});
+			this.log(chalk.blue('bower'));
+		};
 		this.installDependencies({
 			npm: true,
 			bower: true,
