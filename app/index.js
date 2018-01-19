@@ -392,96 +392,96 @@ module.exports = class extends Generator {
 	}
 
 	install() {
-		if (this.npmsetup) {
-			this.log(chalk.yellow('\nInstalling required packages...'));
-
-			this.npmInstall(['autoprefixer'], {
-				'saveDev': true,
-				'global': true
-			});
-			this.log(chalk.blue('autoprefixer'));
-
-			this.npmInstall(['browser-sync'], {
-				'saveDev': true,
-				'global': true
-			});
-			this.log(chalk.blue('browser-sync'));
-
-			this.npmInstall(['imagemin-cli'], {
-				'saveDev': true,
-				'global': true
-			});
-			this.log(chalk.blue('imagemin-cli'));
-
-			this.npmInstall(['jscs'], {
-				'saveDev': true,
-				'global': true
-			});
-			this.log(chalk.blue('jscs'));
-
-			this.npmInstall(['mkdirp'], {
-				'saveDev': true,
-				'global': true
-			});
-			this.log(chalk.blue('mkdirp'));
-
-			this.npmInstall(['node-sass'], {
-				'saveDev': true,
-				'global': true
-			});
-			this.log(chalk.blue('node-sass'));
-
-			this.npmInstall(['npm-run-all'], {
-				'saveDev': true,
-				'global': true
-			});
-			this.log(chalk.blue('npm-run-all'));
-
-			this.npmInstall(['onchange'], {
-				'saveDev': true,
-				'global': true
-			});
-			this.log(chalk.blue('onchange'));
-
-			this.npmInstall(['postcss-cli'], {
-				'saveDev': true,
-				'global': true
-			});
-			this.log(chalk.blue('postcss-cli'));
-
-			this.npmInstall(['rimraf'], {
-				'saveDev': true,
-				'global': true
-			});
-			this.log(chalk.blue('rimraf'));
-
-			this.npmInstall(['gulp'], {
-				'saveDev': true,
-				'global': true
-			});
-			this.log(chalk.blue('gulp'));
-
-			this.npmInstall(['uglify-js'], {
-				'saveDev': true,
-				'global': true
-			});
-			this.log(chalk.blue('uglify-js'));
-
-			this.npmInstall(['wiredep-cli'], {
-				'saveDev': true,
-				'global': true
-			});
-			this.log(chalk.blue('wiredep-cli'));
-
-			this.npmInstall(['bower'], {
-				'saveDev': true,
-				'global': true
-			});
-			this.log(chalk.blue('bower'));
-		};
+//		if (this.npmsetup) {
+//			this.log(chalk.yellow('\nInstalling required packages...'));
+//
+//			this.npmInstall(['autoprefixer'], {
+//				'saveDev': true,
+//				'global': true
+//			});
+//			this.log(chalk.blue('autoprefixer'));
+//
+//			this.npmInstall(['browser-sync'], {
+//				'saveDev': true,
+//				'global': true
+//			});
+//			this.log(chalk.blue('browser-sync'));
+//
+//			this.npmInstall(['imagemin-cli'], {
+//				'saveDev': true,
+//				'global': true
+//			});
+//			this.log(chalk.blue('imagemin-cli'));
+//
+//			this.npmInstall(['jscs'], {
+//				'saveDev': true,
+//				'global': true
+//			});
+//			this.log(chalk.blue('jscs'));
+//
+//			this.npmInstall(['mkdirp'], {
+//				'saveDev': true,
+//				'global': true
+//			});
+//			this.log(chalk.blue('mkdirp'));
+//
+//			this.npmInstall(['node-sass'], {
+//				'saveDev': true,
+//				'global': true
+//			});
+//			this.log(chalk.blue('node-sass'));
+//
+//			this.npmInstall(['npm-run-all'], {
+//				'saveDev': true,
+//				'global': true
+//			});
+//			this.log(chalk.blue('npm-run-all'));
+//
+//			this.npmInstall(['onchange'], {
+//				'saveDev': true,
+//				'global': true
+//			});
+//			this.log(chalk.blue('onchange'));
+//
+//			this.npmInstall(['postcss-cli'], {
+//				'saveDev': true,
+//				'global': true
+//			});
+//			this.log(chalk.blue('postcss-cli'));
+//
+//			this.npmInstall(['rimraf'], {
+//				'saveDev': true,
+//				'global': true
+//			});
+//			this.log(chalk.blue('rimraf'));
+//
+//			this.npmInstall(['gulp'], {
+//				'saveDev': true,
+//				'global': true
+//			});
+//			this.log(chalk.blue('gulp'));
+//
+//			this.npmInstall(['uglify-js'], {
+//				'saveDev': true,
+//				'global': true
+//			});
+//			this.log(chalk.blue('uglify-js'));
+//
+//			this.npmInstall(['wiredep-cli'], {
+//				'saveDev': true,
+//				'global': true
+//			});
+//			this.log(chalk.blue('wiredep-cli'));
+//
+//			this.npmInstall(['bower'], {
+//				'saveDev': true,
+//				'global': true
+//			});
+//			this.log(chalk.blue('bower'));
+//		};
 		this.installDependencies({
 			npm: true,
-			bower: false,
+			bower: true,
 			yarn: false
 		});
 	}
