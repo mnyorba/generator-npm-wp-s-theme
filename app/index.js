@@ -243,7 +243,7 @@ module.exports = class extends Generator {
 
 							next();
 						});
-					} else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss' || fileStats.name == 'theme.scss') {
+				} else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss' || fileStats.name == 'theme.scss' || fileStats.name == 'gulpfile.js') {
 						fs.readFile(filePath, 'utf8', function (err, data) {
 							if (err) {
 								done(error);
