@@ -153,23 +153,22 @@ module.exports = class extends Generator {
 		// Download _s theme
 		this.log(chalk.yellow('\nLet\'s download the latest version of Underscores...'));
 
-//		Promise.all([
-//			'github.com/Automattic/_s/archive/master.tar.gz'
-//		].map(x => download(x, '.', {
-//				extract: true,
-//				strip: 1
-//			})))
-			//			.then(() => {
-			//			console.log('files downloaded!');
-			//			this.log(chalk.blue('End download1!'));
-			//		});
+		//		Promise.all([
+		//			'github.com/Automattic/_s/archive/master.tar.gz'
+		//		].map(x => download(x, '.', {
+		//				extract: true,
+		//				strip: 1
+		//			})))
+		//			.then(() => {
+		//			console.log('files downloaded!');
+		//			this.log(chalk.blue('End download1!'));
+		//		});
 
 
-					download('https://github.com/Automattic/_s/archive/master.tar.gz', '.', {
-							extract: true,
-							strip: 1,
-							mode: 755
-						})
+		download('https://github.com/Automattic/_s/archive/master.tar.gz', '.', {
+				extract: true,
+				strip: 1
+			})
 			.then(() => {
 				this.log(chalk.blue('End download!'));
 			})
@@ -235,7 +234,7 @@ module.exports = class extends Generator {
 							result = result.replace(/ _s/g, ' ' + _this.themeName);
 							result = result.replace(/_s-/g, _this.themeSlug + '-');
 
-							
+
 							fs.writeFile(filePath, result, 'utf8', function (err) {
 								if (err) {
 									done(error);
@@ -244,8 +243,8 @@ module.exports = class extends Generator {
 
 							next();
 						});
-//				} else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss' || fileStats.name == 'theme.scss' || fileStats.name == 'gulpfile.js') {
-				} else if (path.extname(fileStats.name) == '.css' || fileStats.name == '.scss') {
+						//				} else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss' || fileStats.name == 'theme.scss' || fileStats.name == 'gulpfile.js') {
+					} else if (path.extname(fileStats.name) == '.css' || fileStats.name == '.scss') {
 						fs.readFile(filePath, 'utf8', function (err, data) {
 							if (err) {
 								done(error);
@@ -332,11 +331,11 @@ module.exports = class extends Generator {
 
 				this.log(chalk.blue('Parsing done!'));
 			});
-//			.catch(error => {
-//				//				alert(error); 
-//				// Error: Not Found
-//				this.log(chalk.red('Error:', error));
-//			});
+		//			.catch(error => {
+		//				//				alert(error); 
+		//				// Error: Not Found
+		//				this.log(chalk.red('Error:', error));
+		//			});
 
 		// Copying configuration files
 		this.log(chalk.yellow('\nCopying configuration files...'));
