@@ -478,12 +478,12 @@ module.exports = class extends Generator {
 				'global': true
 			});
 			this.log(chalk.blue('bower'));
-		}
-//		this.installDependencies({
-//			npm: true,
-//			bower: true,
-//			yarn: false
-//		});
+		};
+		this.installDependencies({
+			npm: true,
+			bower: false,
+			yarn: false
+		});
 	}
 	end() {
 		if (this.npmsetup) {
