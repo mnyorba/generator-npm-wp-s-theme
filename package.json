@@ -2,13 +2,12 @@
   "name": "generator-npm-wp-s-theme",
   "version": "0.1.45",
   "description": "Yeoman generator for a WordPress starter theme (using Underscores) with npm and other good stuff",
+  "homepage": "https://github.com/mnyorba/generator-npm-wp-s-theme",
+  "author": "mnyorba <mnyorba@gmail.com> (http://wisart.in.ua/)",
   "files": [
     "app"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mnyorba/generator-npm-wp-s-theme.git"
-  },
+  "main": "app/index.js",
   "keywords": [
     "yeoman-generator",
     "npm",
@@ -18,19 +17,29 @@
     "underscores",
     "_s"
   ],
-  "author": "MNyorba",
-  "license": "MIT",
   "dependencies": {
     "chalk": "^2.1.0",
     "copy": "^0.3.1",
     "del": "^3.0.0",
-    "download": "^4.4.3",
-    "download-status": "^2.2.1",
+    "download": "^6.2.5",
     "lodash": "^4.17.4",
-    "path": "^0.12.7",
     "output-file-sync": "^2.0.0",
+    "path": "^0.12.7",
     "walk": "^2.3.9",
-    "yeoman-generator": "^0.22.5",
-    "yosay": "^2.0.1"
+    "wp-pot-cli": "^1.0.3",
+    "yeoman-generator": "^2.0.2",
+    "yosay": "^2.0.1",
+    "bower": "^1.8.2"
+  },
+
+
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mnyorba/generator-npm-wp-s-theme.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mnyorba/generator-npm-wp-s-theme/issues"
   }
 }
