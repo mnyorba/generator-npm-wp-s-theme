@@ -158,7 +158,7 @@ module.exports = class extends Generator {
 //		].map(x => download(x, '.', {
 //				extract: true,
 //				strip: 1
-			})))
+//			})))
 			//			.then(() => {
 			//			console.log('files downloaded!');
 			//			this.log(chalk.blue('End download1!'));
