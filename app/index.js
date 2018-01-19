@@ -211,7 +211,7 @@ module.exports = class extends Generator {
 				// Parsing theme files 
 				var _this = this;
 				var walker;
-
+				options = { followLinks: false };
 				this.log(chalk.yellow('\nParsing theme files...'));
 
 				walker = walk.walk('.');
