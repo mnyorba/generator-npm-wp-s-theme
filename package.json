@@ -1,6 +1,6 @@
 {
   "name": "generator-npm-wp-s-theme",
-  "version": "0.1.67",
+  "version": "0.0.0",
   "description": "Yeoman generator for a WordPress starter theme (using Underscores) with npm and other good stuff",
   "homepage": "https://github.com/mnyorba/generator-npm-wp-s-theme",
   "author": "mnyorba <mnyorba@gmail.com> (http://wisart.in.ua/)",
@@ -9,27 +9,79 @@
   ],
   "main": "app/index.js",
   "keywords": [
+    "_s",
     "yeoman-generator",
-    "npm",
     "wordpress",
-    "wordpress-starter-theme",
-    "theme",
-    "underscores",
-    "_s"
+    "yeoman-generator"
   ],
+  "devDependencies": {
+    "coveralls": "^2.13.1",
+    "eslint": "^4.1.0",
+    "eslint-config-prettier": "^2.4.0",
+    "eslint-config-xo": "^0.18.2",
+    "eslint-plugin-prettier": "^2.2.0",
+    "husky": "^0.14.3",
+    "jest": "^22.0.6",
+    "lint-staged": "^4.2.1",
+    "lodash": "^4.17.4",
+    "nsp": "^2.6.3",
+    "prettier": "^1.7.0",
+    "yeoman-assert": "^3.1.0",
+    "yeoman-test": "^1.7.0"
+  },
   "dependencies": {
+    "bower": "^1.8.2",
     "chalk": "^2.1.0",
     "copy": "^0.3.1",
     "del": "^3.0.0",
     "download": "^6.2.5",
-    "lodash": "^4.17.4",
     "output-file-sync": "^2.0.0",
     "path": "^0.12.7",
     "walk": "^2.3.9",
     "wp-pot-cli": "^1.0.3",
     "yeoman-generator": "^2.0.2",
-    "yosay": "^2.0.1",
-    "bower": "^1.8.2"
+    "yosay": "^2.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "scripts": {
+    "prepublish": "nsp check",
+    "pretest": "eslint .",
+    "precommit": "lint-staged",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "xo",
+      "prettier"
+    ],
+    "env": {
+      "jest": true,
+      "node": true
+    },
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "printWidth": 90
+        }
+      ]
+    },
+    "plugins": [
+      "prettier"
+    ]
   },
   "repository": {
     "type": "git",
