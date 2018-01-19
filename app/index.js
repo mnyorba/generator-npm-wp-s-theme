@@ -235,6 +235,8 @@ module.exports = class extends Generator {
 							result = result.replace(/ _s/g, ' ' + _this.themeName);
 							result = result.replace(/_s-/g, _this.themeSlug + '-');
 
+							this.log(chalk.blue('parse .php'));
+							
 							fs.writeFile(filePath, result, 'utf8', function (err) {
 								if (err) {
 									done(error);
@@ -261,6 +263,7 @@ module.exports = class extends Generator {
 							result = result.replace(/\@import "variables-site\/variables-site";/g, '\n\n// bower:scss' + '\n\n// endbower' + '\n\n@import "variables-site\/variables-site";');
 							result = result.replace(/\@import "media\/media";/g, '@import "media\/media";' + '\n\n/*--------------------------------------------------------------\n\n' + '# Theme\n' + '--------------------------------------------------------------*/\n' + '@import "theme";\n');
 
+							this.log(chalk.blue('parse .scss'));
 							fs.writeFile(filePath, result, 'utf8', function (err) {
 								if (err) {
 									done(error);
