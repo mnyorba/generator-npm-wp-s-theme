@@ -1,6 +1,6 @@
 {
   "name": "generator-npm-wp-s-theme",
-  "version": "0.1.46",
+  "version": "0.1.47",
   "description": "Yeoman generator for a WordPress starter theme (using Underscores) with npm and other good stuff",
   "homepage": "https://github.com/mnyorba/generator-npm-wp-s-theme",
   "author": "mnyorba <mnyorba@gmail.com> (http://wisart.in.ua/)",
