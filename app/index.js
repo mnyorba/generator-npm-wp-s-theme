@@ -153,22 +153,22 @@ module.exports = class extends Generator {
 		// Download _s theme
 		this.log(chalk.yellow('\nLet\'s download the latest version of Underscores...'));
 
-		//		Promise.all([
-		//			'github.com/Automattic/_s/archive/master.tar.gz'
-		//		].map(x => download(x, '.', {
-		//				extract: true,
-		//				strip: 1
-		//			})))
-		//			.then(() => {
-		//			console.log('files downloaded!');
-		//			this.log(chalk.blue('End download1!'));
-		//		});
-
-
-		download('https://github.com/Automattic/_s/archive/master.tar.gz', '.', {
+		Promise.all([
+					'github.com/Automattic/_s/archive/master.tar.gz'
+				].map(x => download(x, '.', {
 				extract: true,
 				strip: 1
-			})
+			})))
+			//			.then(() => {
+			//			console.log('files downloaded!');
+			//			this.log(chalk.blue('End download1!'));
+			//		});
+
+
+			//		download('https://github.com/Automattic/_s/archive/master.tar.gz', '.', {
+			//				extract: true,
+			//				strip: 1
+			//			})
 			.then(() => {
 				this.log(chalk.blue('End download!'));
 			})
@@ -211,7 +211,10 @@ module.exports = class extends Generator {
 				// Parsing theme files 
 				var _this = this;
 				var walker;
-				options = { followLinks: false };
+				var options;
+				options = {
+					followLinks: false
+				};
 				this.log(chalk.yellow('\nParsing theme files...'));
 
 				walker = walk.walk('.');
@@ -244,7 +247,7 @@ module.exports = class extends Generator {
 							next();
 						});
 						//				} else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss' || fileStats.name == 'theme.scss' || fileStats.name == 'gulpfile.js') {
-					} else if (path.extname(fileStats.name) == '.css' || fileStats.name == '.scss') {
+					} else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss') {
 						fs.readFile(filePath, 'utf8', function (err, data) {
 							if (err) {
 								done(error);
