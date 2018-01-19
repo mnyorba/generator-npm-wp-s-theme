@@ -479,11 +479,11 @@ module.exports = class extends Generator {
 			});
 			this.log(chalk.blue('bower'));
 		}
-		this.installDependencies({
-			npm: true,
-			bower: true,
-			yarn: false
-		});
+//		this.installDependencies({
+//			npm: true,
+//			bower: true,
+//			yarn: false
+//		});
 	}
 	end() {
 		if (this.npmsetup) {
