@@ -166,7 +166,7 @@ module.exports = class extends Generator {
 
 
 					download('https://github.com/Automattic/_s/archive/master.tar.gz', '.', {
-							extract: false,
+							extract: true,
 							strip: 1,
 							mode: 755
 						})
