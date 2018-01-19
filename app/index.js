@@ -153,22 +153,22 @@ module.exports = class extends Generator {
 		// Download _s theme
 		this.log(chalk.yellow('\nLet\'s download the latest version of Underscores...'));
 
-		Promise.all([
-					'github.com/Automattic/_s/archive/master.tar.gz'
-				].map(x => download(x, '.', {
+		//		Promise.all([
+		//					'github.com/Automattic/_s/archive/master.tar.gz'
+		//				].map(x => download(x, '.', {
+		//				extract: true,
+		//				strip: 1
+		//			})))
+		//			.then(() => {
+		//			console.log('files downloaded!');
+		//			this.log(chalk.blue('End download1!'));
+		//		});
+
+
+		download('https://github.com/Automattic/_s/archive/master.tar.gz', '.', {
 				extract: true,
 				strip: 1
-			})))
-			//			.then(() => {
-			//			console.log('files downloaded!');
-			//			this.log(chalk.blue('End download1!'));
-			//		});
-
-
-			//		download('https://github.com/Automattic/_s/archive/master.tar.gz', '.', {
-			//				extract: true,
-			//				strip: 1
-			//			})
+			})
 			.then(() => {
 				this.log(chalk.blue('End download!'));
 			})
