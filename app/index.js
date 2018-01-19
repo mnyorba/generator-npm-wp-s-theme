@@ -149,6 +149,8 @@ module.exports = class extends Generator {
 		var done = this.async();
 		var dir = this.destinationRoot();
 		var unusedFiles = ['.travis.yml', 'codesniffer.ruleset.xml', 'README.md'];
+		var _this = this;
+		var walker;
 
 		// Download _s theme
 		this.log(chalk.yellow('\nLet\'s download the latest version of Underscores...'));
@@ -210,8 +212,6 @@ module.exports = class extends Generator {
 			})
 			.then(() => {
 				// Parsing theme files 
-				var _this = this;
-				var walker;
 
 				this.log(chalk.yellow('\nParsing theme files...'));
 
@@ -244,32 +244,32 @@ module.exports = class extends Generator {
 
 							next();
 						});
-//				} else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss' || fileStats.name == 'theme.scss' || fileStats.name == 'gulpfile.js') {
-//						fs.readFile(filePath, 'utf8', function (err, data) {
-//							if (err) {
-//								done(error);
-//							}
-//
-//							var result;
-//
-//							result = data.replace(/(Theme Name: )(.+)/g, '$1' + _this.themeName);
-//							result = result.replace(/(Theme URI: )(.+)/g, '$1' + _this.themeURI);
-//							result = result.replace(/(Author: )(.+)/g, '$1' + _this.author);
-//							result = result.replace(/(Author URI: )(.+)/g, '$1' + _this.authorURI);
-//							result = result.replace(/(Description: )(.+)/g, '$1' + _this.description);
-//							result = result.replace(/(Text Domain: )(.+)/g, '$1' + _this.themeSlug);
-//							result = result.replace(/_s is based on Underscores/g, _this.themeName + ' is based on Underscores');
-//							result = result.replace(/\@import "variables-site\/variables-site";/g, '\n\n// bower:scss' + '\n\n// endbower' + '\n\n@import "variables-site\/variables-site";');
-//							result = result.replace(/\@import "media\/media";/g, '@import "media\/media";' + '\n\n/*--------------------------------------------------------------\n\n' + '# Theme\n' + '--------------------------------------------------------------*/\n' + '@import "theme";\n');
-//
-//							fs.writeFile(filePath, result, 'utf8', function (err) {
-//								if (err) {
-//									done(error);
-//								}
-//							});
-//
-//							next();
-//						});
+				} else if (path.extname(fileStats.name) == '.css' || fileStats.name == 'style.scss' || fileStats.name == 'woocommerce.scss' || fileStats.name == 'theme.scss' || fileStats.name == 'gulpfile.js') {
+						fs.readFile(filePath, 'utf8', function (err, data) {
+							if (err) {
+								done(error);
+							}
+
+							var result;
+
+							result = data.replace(/(Theme Name: )(.+)/g, '$1' + _this.themeName);
+							result = result.replace(/(Theme URI: )(.+)/g, '$1' + _this.themeURI);
+							result = result.replace(/(Author: )(.+)/g, '$1' + _this.author);
+							result = result.replace(/(Author URI: )(.+)/g, '$1' + _this.authorURI);
+							result = result.replace(/(Description: )(.+)/g, '$1' + _this.description);
+							result = result.replace(/(Text Domain: )(.+)/g, '$1' + _this.themeSlug);
+							result = result.replace(/_s is based on Underscores/g, _this.themeName + ' is based on Underscores');
+							result = result.replace(/\@import "variables-site\/variables-site";/g, '\n\n// bower:scss' + '\n\n// endbower' + '\n\n@import "variables-site\/variables-site";');
+							result = result.replace(/\@import "media\/media";/g, '@import "media\/media";' + '\n\n/*--------------------------------------------------------------\n\n' + '# Theme\n' + '--------------------------------------------------------------*/\n' + '@import "theme";\n');
+
+							fs.writeFile(filePath, result, 'utf8', function (err) {
+								if (err) {
+									done(error);
+								}
+							});
+
+							next();
+						});
 					} else if (fileStats.name === 'readme.txt') {
 						fs.readFile(filePath, 'utf8', function (err, data) {
 							if (err) {
