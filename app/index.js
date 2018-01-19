@@ -3,7 +3,7 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const download = require('download');
-const fs = require('fs');
+var fs = require('fs');
 var del = require('del');
 var _ = require('lodash');
 var walk = require('walk');
@@ -153,11 +153,11 @@ module.exports = class extends Generator {
 		// Download _s theme
 		this.log(chalk.yellow('\nLet\'s download the latest version of Underscores...'));
 
-		Promise.all([
-			'github.com/Automattic/_s/archive/master.tar.gz'
-		].map(x => download(x, '.', {
-				extract: true,
-				strip: 1
+//		Promise.all([
+//			'github.com/Automattic/_s/archive/master.tar.gz'
+//		].map(x => download(x, '.', {
+//				extract: true,
+//				strip: 1
 			})))
 			//			.then(() => {
 			//			console.log('files downloaded!');
@@ -165,11 +165,11 @@ module.exports = class extends Generator {
 			//		});
 
 
-			//		download('https://github.com/Automattic/_s/archive/master.tar.gz', '.', {
-			//				extract: false,
-			//				strip: 1,
-			//				mode: 755
-			//			})
+					download('https://github.com/Automattic/_s/archive/master.tar.gz', '.', {
+							extract: false,
+							strip: 1,
+							mode: 755
+						})
 			.then(() => {
 				this.log(chalk.blue('End download!'));
 			})
