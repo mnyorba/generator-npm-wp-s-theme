@@ -13,7 +13,7 @@ module.exports = class extends Generator {
 	prompting() {
 		// Have Yeoman greet the user.
 		this.log(yosay(
-			'Welcome to the world-class ' + chalk.red('generator-npm-wp-s-theme-test') + ' generator!'
+			'Welcome to the world-class ' + chalk.red('generator-npm-wp-s-theme') + ' generator!'
 		));
 
 		return this.prompt(
