@@ -469,6 +469,12 @@ module.exports = class extends Generator {
 				'global': true
 			});
 			this.log(chalk.blue('wiredep-cli'));
+			
+			this.npmInstall(['cross-zip-cli'], {
+				'saveDev': true,
+				'global': true
+			});
+			this.log(chalk.blue('cross-zip-cli'));
 		};
 //		this.installDependencies({
 //			npm: true,
