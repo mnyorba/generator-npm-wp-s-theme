@@ -52,13 +52,13 @@
 
 		"imagemin": "imagemin images/**/*.{jpg,png} -o dist/images",
 
-		"build-css:style": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/style.scss dist/style.css",
-		"build-css:woocommerce": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/woocommerce.scss dist/woocommerce.css",
+		"build-css:style": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/style.scss dist/<%= theme_domain %>/style.css",
+		"build-css:woocommerce": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/woocommerce.scss dist/<%= theme_domain %>/woocommerce.css",
 		"build-css": "run-p  --continue-on-error --print-label --silent --aggregate-output build-css:*",
 
 		"build:images": "run-s imagemin",
 		"watch:images": "onchange \"images\" -- run-s build:images",
-		"build": "run-s clean copy build-css:*",
+		"build": "run-s pot clean copy build-css:*",
 
 		"clean": "rimraf dist/**/*",
 		"copy": "gulp build-copy",
