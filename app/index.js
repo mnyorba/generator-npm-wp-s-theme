@@ -365,13 +365,12 @@ module.exports = class extends Generator {
 			this.fs.copyTpl(
 				this.templatePath('_package.json'),
 				this.destinationPath('package.json'), {
-					package_name: this.themeSlug,
+					package_name: this.themeName,
 					package_description: this.description,
 					package_author: this.author,
 					proxy_address: this.proxy,
 					proxy_domain: this.domain,
 					theme_domain: this.themeSlug,
-					package_name: this.themeName,
 					theme_bugreport: this.bugreport,
 					author_uri: this.authorURI,
 					author_email: this.authorEmail
@@ -470,18 +469,12 @@ module.exports = class extends Generator {
 				'global': true
 			});
 			this.log(chalk.blue('wiredep-cli'));
-
-			this.npmInstall(['bower'], {
-				'saveDev': true,
-				'global': true
-			});
-			this.log(chalk.blue('bower'));
 		};
-		this.installDependencies({
-			npm: true,
-			bower: true,
-			yarn: false
-		});
+//		this.installDependencies({
+//			npm: true,
+//			bower: true,
+//			yarn: false
+//		});
 	}
 	end() {
 		if (this.npmsetup) {
