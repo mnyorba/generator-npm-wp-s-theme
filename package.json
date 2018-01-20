@@ -28,8 +28,7 @@
     "walk": "^2.3.9",
     "wp-pot-cli": "^1.0.3",
     "yeoman-generator": "^2.0.2",
-    "yosay": "^2.0.1",
-    "bower": "^1.8.2"
+    "yosay": "^2.0.1"
   },
   "repository": {
     "type": "git",
