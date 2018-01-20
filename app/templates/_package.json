@@ -62,7 +62,7 @@
 
 		"clean": "rimraf dist/**/*",
 		"copy": "gulp build-copy",
-		"arc": "archiverjs dist/* --out-file=wisart.zip",
+		"arc": "cross-zip dist/<%= theme_domain %> dist/<%= theme_domain %>.zip",
 		
 		"postinstall": "run-s build:*"
 	},
