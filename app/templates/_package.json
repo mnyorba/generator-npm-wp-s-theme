@@ -30,16 +30,19 @@
     "Opera >= 30"
   ],
 	"dependencies": {},
-	"description": "Yeoman generator for a WordPress starter theme (using Underscores) with npm and other good stuff.",
+	"description": "Yeoman generator for a WordPress starter theme (using Underscores) with npm.",
 	"scripts": {
 		"wiredep": "wiredep -s sass/style.scss --dependencies",
 
 		"scss:style": "node-sass --output-style expanded --source-map maps --source-map-contents false --source-map-embed true --precision 6 sass/style.scss .tmp/style.css",
 		"scss:woocommerce": "node-sass --output-style expanded --source-map maps --source-map-contents false --source-map-embed true --precision 6 sass/woocommerce.scss .tmp/woocommerce.css",
 		"scss": "run-p  --continue-on-error --print-label --silent --aggregate-output scss:*",
+		
+		"autoprefixer": "postcss .tmp/*.css --use autoprefixer -d .",
+		
+		"css": "run-s scss autoprefixer",
 
 		"serve": "browser-sync start --proxy \"<%= proxy_address %>/<%= proxy_domain %>\" --reload-delay 2000 --files \"*.css, js/*.js, **/*.php, languages/*.pot, !node_modules/**/*.html, !bower_components*.*\"",
-		"autoprefixer": "postcss --use autoprefixer -w .tmp/*.css -d .",
 
 		"uglify": "mkdirp dist/js && uglifyjs js/*.js -m -o dist/js/app.js && uglifyjs js/*.js -m -c -o dist/js/app.min.js",
 		"lint": "jscs js",
@@ -48,7 +51,7 @@
 		"watch:js": "onchange \"js\" -- run-s lint uglify",
 		"watch": "run-p serve watch:*",
 		
-		"pot": "wp-pot --src \"**/*.php\" --dest-file \"languages/<%= theme_domain %>.pot\" --domain <%= theme_domain %> --package \"<%= package_name %>\" --bug-report \"<%= author_uri %>\" --team \"<%= package_author %> <%= author_email %>\"",
+		"lang": "echo Update <%= theme_domain %>.pot file & wp-pot --src \"**/*.php\" --dest-file \"languages/<%= theme_domain %>.pot\" --domain <%= theme_domain %> --package \"<%= package_name %>\" --bug-report \"<%= author_uri %>\" --team \"<%= package_author %> <%= author_email %>\"",
 
 		"imagemin": "imagemin images/**/*.{jpg,png} -o dist/images",
 
@@ -58,11 +61,11 @@
 
 		"build:images": "run-s imagemin",
 		"watch:images": "onchange \"images\" -- run-s build:images",
-		"build": "run-s pot clean copy build-css:* arc",
+		"build": "run-s lang clean copy build-css:* arc",
 
 		"clean": "rimraf dist/**/*",
 		"copy": "gulp build-copy",
-		"arc": "cross-zip dist/<%= theme_domain %> dist/<%= theme_domain %>.zip",
+		"arc": "echo Create <%= theme_domain %>.zip & cross-zip dist/<%= theme_domain %> dist/<%= theme_domain %>.zip",
 		
 		"postinstall": "run-s build:*"
 	},

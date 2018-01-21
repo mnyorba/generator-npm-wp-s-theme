@@ -10,7 +10,7 @@
 
 ## List of packages used:
 * #### for development theme:
-[autoprefixer](https://github.com/postcss/autoprefixer), [browser-sync](https://github.com/Browsersync/browser-sync), [jscs](https://github.com/jscs-dev/node-jscs), [imagemin-cli](https://github.com/imagemin/imagemin-cli), [mkdirp](https://github.com/substack/node-mkdirp),  [node-sass](https://github.com/sass/node-sass), [npm-run-all](https://github.com/mysticatea/npm-run-all), [onchange](https://github.com/Qard/onchange), [postcss-cli](https://github.com/code42day/postcss-cli), [rimraf](https://github.com/isaacs/rimraf), [gulp](https://github.com/gulpjs/gulp), [stylelint](https://github.com/stylelint/stylelint), [uglify-js](https://github.com/mishoo/UglifyJS2), [wiredep-cli](https://github.com/taptapship/wiredep-cli), [cross-zip-cli](https://github.com/jprichardson/cross-zip-cli), [bower](https://github.com/bower/bower).
+[autoprefixer](https://github.com/postcss/autoprefixer), [browser-sync](https://github.com/Browsersync/browser-sync), [jscs](https://github.com/jscs-dev/node-jscs), [imagemin-cli](https://github.com/imagemin/imagemin-cli), [mkdirp](https://github.com/substack/node-mkdirp),  [node-sass](https://github.com/sass/node-sass), [npm-run-all](https://github.com/mysticatea/npm-run-all), [onchange](https://github.com/Qard/onchange), [postcss-cli](https://github.com/code42day/postcss-cli), [rimraf](https://github.com/isaacs/rimraf), [gulp](https://github.com/gulpjs/gulp), [stylelint](https://github.com/stylelint/stylelint), [uglify-js](https://github.com/mishoo/UglifyJS2), [wiredep-cli](https://github.com/taptapship/wiredep-cli), [cross-zip-cli](https://github.com/jprichardson/cross-zip-cli), [wp-pot](https://github.com/rasmusbe/wp-pot), [bower](https://github.com/bower/bower).
 
 * #### for download and generation clean theme:
 [chalk](https://github.com/chalk/chalk), [copy](https://github.com/jonschlinkert/copy), [del](https://github.com/sindresorhus/del), [download](https://github.com/kevva/download), [download-status](https://github.com/kevva/download-status), [lodash](https://github.com/lodash/lodash), [path](https://github.com/jinder/path), [walk](https://github.com/Daplie/node-walk), [yeoman-generator](https://github.com/yeoman/generator), [yosay](https://github.com/yeoman/yosay) .
@@ -56,51 +56,29 @@ Requests for adding files `.gitignore`, `.editorconfig`, `.eslintrc.json`, `.sty
 
 You're ready to go! Run any task by typing `npm run task` (where "task" is the name of the task in the `"scripts"` object). The most useful task for rapid development is `watch`. It will start a new server, open up a browser and watch for any SCSS, JS, PHP changes in the theme; once it compiles those changes, the browser will automatically  reload page with injected the changeds!
 
-## List of available tasks
+## List of main tasks
 ### `watch`
   `run-p serve watch:*`
 
   Run the following tasks simultaneously: `serve`, `watch:css`, `watch:js` & `watch:images`. When a .scss, .js, .php or image file changes, the task will compile .scss and .js files, and the server will be notified of the change. Any browser connected to the server will then inject the new file.
-
-#### `serve`
-  `browser-sync start --proxy \"< host >/< theme >\" --files \"*.scss, js/*.js, **/*.php, !node_modules/**/*.html, !bower_components*.*\`
-
-  Start a new server and watch for CSS & JS file changes
-
-#### `build:css`
-  `run-p scss:*`
-
-  Alias to run the all `scss` tasks.
-
-#### `build:js`
-  `run-s lint concat uglify`
-
-  Alias to run the `lint`, `concat` and `uglify` tasks. Lints JS, combines JS files & uglifies the output
-
-#### `build:images`
-  `run-s imagemin icons`
-
-  Alias to run the `imagemin` and `icons` tasks. Compresses images, generates an SVG sprite from a folder of separate SVGs
-
+  
 #### `build`
   `run-s build:*`
+  
+  Copies all the files necessary for the project to the "dist" directory. There are files in the theme catalog and in the archive.
+  Compiles SCSS to CSS & add vendor prefixes, updates the language file.
 
-  Alias to run all of the `build` commands
+## List of useful tasks (one time)
+#### `css`
+  `run-s css`
+  
+  Compiles SCSS to CSS & add vendor prefixes.
+  
+#### `lang`
+  `run-s lang`
+  
+  Updates the theme language file.
 
-#### `watch:css`
-  `onchange 'src/**/*.scss' -- run-s build:css autoprefixer`
-
-  Watches for any .scss file in `scss` to change, then runs the `build:css` and `autoprefixer` tasks. Compiles SCSS to CSS & add vendor prefixes
-
-#### `watch:js`
-  `onchange 'src/**/*.js' -- run-s build:js`
-
-  Watches for any .js file to change, then runs the `build:js` task
-
-#### `watch:images`
-  `onchange 'src/images/**/*' -- run-s build:images`
-
-  Watches for any images in `images` to change, then runs the `build:images` task
 
 ## Bower usage
 - Run `bower install --save <package>` to install frontend dependencies
