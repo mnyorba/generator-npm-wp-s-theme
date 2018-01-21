@@ -5,7 +5,7 @@
 * [List of packages used](#list-of-packages-used)
 * [Installation](#installation)
 * [Usage](#usage)
-* [List of available tasks](#list-of-available-tasks)
+* [List of main tasks](#list-of-main-tasks)
 * [Need help?](#need-help)
 
 ## List of packages used:
