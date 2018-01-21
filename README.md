@@ -58,24 +58,24 @@ You're ready to go! Run any task by typing `npm run task` (where "task" is the n
 
 ## List of main tasks
 ### `watch`
-  `run-p serve watch:*`
+  `npm run watch`
 
   Run the following tasks simultaneously: `serve`, `watch:css`, `watch:js` & `watch:images`. When a .scss, .js, .php or image file changes, the task will compile .scss and .js files, and the server will be notified of the change. Any browser connected to the server will then inject the new file.
   
 #### `build`
-  `run-s build:*`
+  `npm run build`
   
   Copies all the files necessary for the project to the "dist" directory. There are files in the theme catalog and in the archive.
   Compiles SCSS to CSS & add vendor prefixes, updates the language file.
 
 ## List of useful tasks (one time)
 #### `css`
-  `run-s css`
+  `npm run css`
   
   Compiles SCSS to CSS & add vendor prefixes.
   
 #### `lang`
-  `run-s lang`
+  `npm run lang`
   
   Updates the theme language file.
 
