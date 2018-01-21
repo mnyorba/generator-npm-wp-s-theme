@@ -61,7 +61,7 @@
 
 		"build:images": "run-s imagemin",
 		"watch:images": "onchange \"images\" -- run-s build:images",
-		"build": "run-s lang clean copy build-css:* arc",
+		"build": "run-s -l lang clean copy build-css:* arc",
 
 		"clean": "rimraf dist/**/*",
 		"copy": "gulp build-copy",
