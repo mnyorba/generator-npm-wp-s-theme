@@ -30,7 +30,6 @@
     "Opera >= 30"
   ],
 	"dependencies": {},
-	"description": "Yeoman generator for a WordPress starter theme (using Underscores) with npm.",
 	"scripts": {
 		"wiredep": "wiredep -s sass/style.scss --dependencies",
 
@@ -61,11 +60,11 @@
 
 		"build:images": "run-s imagemin",
 		"watch:images": "onchange \"images\" -- run-s build:images",
-		"build": "run-s -l lang clean copy build-css:* archive",
+		"build": "run-s -l lang clean copy build-css:* arc",
 
 		"clean": "rimraf dist/**/*",
 		"copy": "gulp build-copy",
-		"archive": "echo Create <%= theme_domain %>.zip & cross-zip dist/<%= theme_domain %> dist/<%= theme_domain %>.zip",
+		"arc": "echo Create <%= theme_domain %>.zip & cross-zip dist/<%= theme_domain %> dist/<%= theme_domain %>.zip",
 		
 	},
 	"devDependencies": {
