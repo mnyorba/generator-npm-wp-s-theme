@@ -1,6 +1,6 @@
 {
 	"name": "<%= package_name %>",
-	"version": "0.1.45",
+	"version": "1.0.3",
 	"description": "<%= package_description %>",
 	"author": "<%= package_author %>",
 	"license": "MIT",
@@ -30,7 +30,6 @@
     "Opera >= 30"
   ],
 	"dependencies": {},
-	"description": "Yeoman generator for a WordPress starter theme (using Underscores) with npm.",
 	"scripts": {
 		"wiredep": "wiredep -s sass/style.scss --dependencies",
 
@@ -67,7 +66,6 @@
 		"copy": "gulp build-copy",
 		"arc": "echo Create <%= theme_domain %>.zip & cross-zip dist/<%= theme_domain %> dist/<%= theme_domain %>.zip",
 		
-		"postinstall": "run-s build:*"
 	},
 	"devDependencies": {
 		"autoprefixer": "^7.1.5",

@@ -328,12 +328,7 @@ module.exports = class extends Generator {
 
 				this.log(chalk.blue('Parsing done!'));
 			});
-		//			.catch(error => {
-		//				//				alert(error); 
-		//				// Error: Not Found
-		//				this.log(chalk.red('Error:', error));
-		//			});
-
+		
 		// Copying configuration files
 		this.log(chalk.yellow('\nCopying configuration files...'));
 		if (this.gitignore) {
@@ -484,8 +479,14 @@ module.exports = class extends Generator {
 	}
 	end() {
 		if (this.npmsetup) {
+			
 			this.log(chalk.red('\nWarning! \nRun: ') + chalk.yellow('npm link gulp') + ' to start the development theme');
-			this.log('\nRun ' + chalk.green('npm run watch ') + ' to start the development and ' + chalk.green('npm run build') + ' to create a file in ' + chalk.white('' + this.themeSlug) + ' ready for production.');
+			
+			var exec = require('child_process').exec; 
+			exec('npm link gulp', function(err, stdout) { console.log('link gulp', stdout); });
+			
+			this.log('\nRun ' + chalk.green('npm run watch ') + ' to start the development and ' + chalk.green('npm run build') + ' to create a files in /dist/' + chalk.white('' + this.themeSlug) + ' ready for production.');
+			
 		}
 		this.log(chalk.green('\nAll Done!!\n------------------------\n'));
 	}
