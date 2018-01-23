@@ -111,21 +111,21 @@ module.exports = class extends Generator {
 			]
 			)
 			.then((answers) => {
-				this.log('Proxy:', chalk.yellow(answers.proxy));
-				this.log('Domain:', chalk.yellow(answers.domain));
-				this.log('Theme name:', chalk.yellow(answers.themeName));
-				this.log('Theme slug:', chalk.yellow(answers.themeSlug));
-				this.log('Theme URI:', chalk.yellow(answers.themeURI));
-				this.log('Author:', chalk.yellow(answers.author));
-				this.log('Author URI:', chalk.yellow(answers.authorURI));
-				this.log('Author email:', chalk.yellow(answers.authorEmail));
-				this.log('Description:', chalk.yellow(answers.description));
-				this.log('Bug report:', chalk.yellow(answers.bugreport));
-				this.log('Add editorconfig file:', chalk.yellow(answers.editorconfig));
-				this.log('Add gitignore file:', chalk.yellow(answers.gitignore));
-				this.log('Add stylelintrc file:', chalk.yellow(answers.stylelintrc));
-				this.log('Add npmrc file:', chalk.yellow(answers.npmrc));
-				this.log('Add npm setup:', chalk.yellow(answers.npmsetup));
+//				this.log('Proxy:', chalk.yellow(answers.proxy));
+//				this.log('Domain:', chalk.yellow(answers.domain));
+//				this.log('Theme name:', chalk.yellow(answers.themeName));
+//				this.log('Theme slug:', chalk.yellow(answers.themeSlug));
+//				this.log('Theme URI:', chalk.yellow(answers.themeURI));
+//				this.log('Author:', chalk.yellow(answers.author));
+//				this.log('Author URI:', chalk.yellow(answers.authorURI));
+//				this.log('Author email:', chalk.yellow(answers.authorEmail));
+//				this.log('Description:', chalk.yellow(answers.description));
+//				this.log('Bug report:', chalk.yellow(answers.bugreport));
+//				this.log('Add editorconfig file:', chalk.yellow(answers.editorconfig));
+//				this.log('Add gitignore file:', chalk.yellow(answers.gitignore));
+//				this.log('Add stylelintrc file:', chalk.yellow(answers.stylelintrc));
+//				this.log('Add npmrc file:', chalk.yellow(answers.npmrc));
+//				this.log('Add npm setup:', chalk.yellow(answers.npmsetup));
 
 				this.proxy = answers.proxy;
 				this.domain = answers.domain;
@@ -479,8 +479,6 @@ module.exports = class extends Generator {
 	}
 	end() {
 		if (this.npmsetup) {
-			
-			this.log(chalk.red('\nWarning! \nRun: ') + chalk.yellow('npm link gulp') + ' to start the development theme');
 			
 			var exec = require('child_process').exec; 
 			exec('npm link gulp', function(err, stdout) { console.log('link gulp', stdout); });
