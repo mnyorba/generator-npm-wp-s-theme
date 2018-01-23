@@ -111,21 +111,21 @@ module.exports = class extends Generator {
 			]
 			)
 			.then((answers) => {
-				this.log('Proxy:', chalk.yellow(answers.proxy));
-				this.log('Domain:', chalk.yellow(answers.domain));
-				this.log('Theme name:', chalk.yellow(answers.themeName));
-				this.log('Theme slug:', chalk.yellow(answers.themeSlug));
-				this.log('Theme URI:', chalk.yellow(answers.themeURI));
-				this.log('Author:', chalk.yellow(answers.author));
-				this.log('Author URI:', chalk.yellow(answers.authorURI));
-				this.log('Author email:', chalk.yellow(answers.authorEmail));
-				this.log('Description:', chalk.yellow(answers.description));
-				this.log('Bug report:', chalk.yellow(answers.bugreport));
-				this.log('Add editorconfig file:', chalk.yellow(answers.editorconfig));
-				this.log('Add gitignore file:', chalk.yellow(answers.gitignore));
-				this.log('Add stylelintrc file:', chalk.yellow(answers.stylelintrc));
-				this.log('Add npmrc file:', chalk.yellow(answers.npmrc));
-				this.log('Add npm setup:', chalk.yellow(answers.npmsetup));
+//				this.log('Proxy:', chalk.yellow(answers.proxy));
+//				this.log('Domain:', chalk.yellow(answers.domain));
+//				this.log('Theme name:', chalk.yellow(answers.themeName));
+//				this.log('Theme slug:', chalk.yellow(answers.themeSlug));
+//				this.log('Theme URI:', chalk.yellow(answers.themeURI));
+//				this.log('Author:', chalk.yellow(answers.author));
+//				this.log('Author URI:', chalk.yellow(answers.authorURI));
+//				this.log('Author email:', chalk.yellow(answers.authorEmail));
+//				this.log('Description:', chalk.yellow(answers.description));
+//				this.log('Bug report:', chalk.yellow(answers.bugreport));
+//				this.log('Add editorconfig file:', chalk.yellow(answers.editorconfig));
+//				this.log('Add gitignore file:', chalk.yellow(answers.gitignore));
+//				this.log('Add stylelintrc file:', chalk.yellow(answers.stylelintrc));
+//				this.log('Add npmrc file:', chalk.yellow(answers.npmrc));
+//				this.log('Add npm setup:', chalk.yellow(answers.npmsetup));
 
 				this.proxy = answers.proxy;
 				this.domain = answers.domain;
@@ -257,7 +257,7 @@ module.exports = class extends Generator {
 							result = result.replace(/(Text Domain: )(.+)/g, '$1' + _this.themeSlug);
 							result = result.replace(/_s is based on Underscores/g, _this.themeName + ' is based on Underscores');
 							result = result.replace(/\@import "variables-site\/variables-site";/g, '\n\n// bower:scss' + '\n\n// endbower' + '\n\n@import "variables-site\/variables-site";');
-							result = result.replace(/\@import "media\/media";/g, '@import "media\/media";' + '\n\n/*--------------------------------------------------------------\n\n' + '# Theme\n' + '--------------------------------------------------------------*/\n' + '@import "theme";\n');
+							result = result.replace(/\@import "media\/media";/g, '@import "media\/media";' + '\n\n/*--------------------------------------------------------------\n' + '# Theme\n' + '--------------------------------------------------------------*/\n' + '@import "theme";\n');
 
 							fs.writeFile(filePath, result, 'utf8', function (err) {
 								if (err) {
@@ -328,12 +328,7 @@ module.exports = class extends Generator {
 
 				this.log(chalk.blue('Parsing done!'));
 			});
-		//			.catch(error => {
-		//				//				alert(error); 
-		//				// Error: Not Found
-		//				this.log(chalk.red('Error:', error));
-		//			});
-
+		
 		// Copying configuration files
 		this.log(chalk.yellow('\nCopying configuration files...'));
 		if (this.gitignore) {
@@ -484,8 +479,10 @@ module.exports = class extends Generator {
 	}
 	end() {
 		if (this.npmsetup) {
-			this.log(chalk.red('\nWarning! \nRun: ') + chalk.yellow('npm link gulp') + ' to start the development theme');
-			this.log('\nRun ' + chalk.green('npm run watch ') + ' to start the development and ' + chalk.green('npm run build') + ' to create a file in ' + chalk.white('' + this.themeSlug) + ' ready for production.');
+			var exec = require('child_process').exec; 
+			exec('npm link gulp', function(err, stdout) { console.log('link gulp', stdout); });
+			
+			this.log('\nRun ' + chalk.green('npm run watch ') + ' to start the development and ' + chalk.green('npm run build') + ' to create a files in /dist/' + chalk.white('' + this.themeSlug) + ' ready for production.');
 		}
 		this.log(chalk.green('\nAll Done!!\n------------------------\n'));
 	}
