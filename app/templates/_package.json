@@ -60,11 +60,11 @@
 
 		"build:images": "run-s imagemin",
 		"watch:images": "onchange \"images\" -- run-s build:images",
-		"build": "run-s -l lang clean copy build-css:* arc",
+		"build": "run-s -l lang clean copy build-css:* archive",
 
 		"clean": "rimraf dist/**/*",
 		"copy": "gulp build-copy",
-		"arc": "echo Create <%= theme_domain %>.zip & cross-zip dist/<%= theme_domain %> dist/<%= theme_domain %>.zip",
+		"archive": "echo Create <%= theme_domain %>.zip & cross-zip dist/<%= theme_domain %> dist/<%= theme_domain %>.zip"
 		
 	},
 	"devDependencies": {
