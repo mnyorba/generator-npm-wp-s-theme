@@ -479,10 +479,11 @@ module.exports = class extends Generator {
 	}
 	end() {
 		if (this.npmsetup) {
-			var exec = require('child_process').exec; 
-			exec('npm link gulp', function(err, stdout) { console.log('link gulp', stdout); });
 			
 			this.log('\nRun ' + chalk.green('npm run watch ') + ' to start the development and ' + chalk.green('npm run build') + ' to create a files in /dist/' + chalk.white('' + this.themeSlug) + ' ready for production.');
+			
+			var exec = require('child_process').exec; 
+			exec('npm link gulp', function(err, stdout) { console.log('link gulp', stdout); });
 		}
 		this.log(chalk.green('\nAll Done!!\n------------------------\n'));
 	}
