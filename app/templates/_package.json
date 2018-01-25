@@ -50,7 +50,7 @@
 		"watch:js": "onchange \"js\" -- run-s lint uglify",
 		"watch": "run-p serve watch:*",
 		
-		"lang": "echo Update <%= theme_domain %>.pot file & wp-pot --src \"**/*.php\" --dest-file \"languages/<%= theme_domain %>.pot\" --domain <%= theme_domain %> --package \"<%= package_name %>\" --bug-report \"<%= author_uri %>\" --team \"<%= package_author %> <%= author_email %>\"",
+		"lang": "echo Update <%= theme_domain %>.pot file & wp-pot --src \"**/*.php\" --dest-file \"languages/<%= theme_domain %>.pot\" --domain <%= theme_domain %> --package \"<%= theme_name %>\" --bug-report \"<%= author_uri %>\" --team \"<%= package_author %> <<%= author_email %>>\"",
 
 		"imagemin": "imagemin images/**/*.{jpg,png} -o dist/images",
 
