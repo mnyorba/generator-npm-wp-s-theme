@@ -365,6 +365,7 @@ module.exports = class extends Generator {
 					package_author: this.author,
 					proxy_address: this.proxy,
 					proxy_domain: this.domain,
+					theme_name: this.themeName,
 					theme_domain: this.themeSlug,
 					theme_bugreport: this.bugreport,
 					author_uri: this.authorURI,
