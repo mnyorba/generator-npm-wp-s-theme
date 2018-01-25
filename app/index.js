@@ -360,7 +360,7 @@ module.exports = class extends Generator {
 			this.fs.copyTpl(
 				this.templatePath('_package.json'),
 				this.destinationPath('package.json'), {
-					package_name: this.themeName,
+					package_name: this.themeSlug,
 					package_description: this.description,
 					package_author: this.author,
 					proxy_address: this.proxy,
