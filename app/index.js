@@ -228,7 +228,7 @@ module.exports = class extends Generator {
 							var result;
 
 							result = data.replace(/'_s'/g, "'" + _this.themeSlug + "'");
-							result = result.replace(/_s_/g, _this.prefix);
+							result = result.replace(/_s_/g, _this.themeSlug + "_");
 							result = result.replace(/ _s/g, ' ' + _this.themeName);
 							result = result.replace(/_s-/g, _this.themeSlug + '-');
 
