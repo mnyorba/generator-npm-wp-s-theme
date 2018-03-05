@@ -33,12 +33,12 @@
 	"scripts": {
 		"wiredep": "wiredep -s sass/style.scss --dependencies",
 
-		"scss:style": "node-sass --output-style expanded --source-map maps --source-map-contents false --source-map-embed true --precision 6 sass/style.scss .tmp/style.css",
-		"scss:woocommerce": "node-sass --output-style expanded --source-map maps --source-map-contents false --source-map-embed true --precision 6 sass/woocommerce.scss .tmp/woocommerce.css",
+		"scss:style": "node-sass --output-style expanded --indent-type tab --indent-width 1 --source-map maps --source-map-contents false --source-map-embed true --precision 6 sass/style.scss .tmp/style.css",
+		"scss:woocommerce": "node-sass --output-style expanded --indent-type tab --indent-width 1 --source-map maps --source-map-contents false --source-map-embed true --precision 6 sass/woocommerce.scss .tmp/woocommerce.css",
 		"scss": "run-p  --continue-on-error --print-label --silent --aggregate-output scss:*",
-		
+
 		"autoprefixer": "postcss .tmp/*.css --use autoprefixer -d .",
-		
+
 		"css": "run-s scss autoprefixer",
 
 		"serve": "browser-sync start --proxy \"<%= proxy_address %>/<%= proxy_domain %>\" --reload-delay 2000 --files \"*.css, js/*.js, **/*.php, languages/*.pot, !node_modules/**/*.html, !bower_components*.*\"",
@@ -49,13 +49,13 @@
 		"watch:css": "onchange \"sass\" -- run-s scss autoprefixer",
 		"watch:js": "onchange \"js\" -- run-s lint uglify",
 		"watch": "run-p serve watch:*",
-		
+
 		"lang": "echo Update <%= theme_domain %>.pot file & wp-pot --src \"**/*.php\" --dest-file \"languages/<%= theme_domain %>.pot\" --domain <%= theme_domain %> --package \"<%= theme_name %>\" --bug-report \"<%= author_uri %>\" --team \"<%= package_author %> <<%= author_email %>>\"",
 
 		"imagemin": "imagemin images/**/*.{jpg,png} -o dist/images",
 
-		"build-css:style": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/style.scss dist/<%= theme_domain %>/style.css",
-		"build-css:woocommerce": "node-sass --output-style expanded --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/woocommerce.scss dist/<%= theme_domain %>/woocommerce.css",
+		"build-css:style": "node-sass --output-style expanded --indent-type tab --indent-width 1 --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/style.scss dist/<%= theme_domain %>/style.css",
+		"build-css:woocommerce": "node-sass --output-style expanded --indent-type tab --indent-width 1 --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/woocommerce.scss dist/<%= theme_domain %>/woocommerce.css",
 		"build-css": "run-p  --continue-on-error --print-label --silent --aggregate-output build-css:*",
 
 		"build:images": "run-s imagemin",
@@ -65,7 +65,7 @@
 		"clean": "rimraf dist/**/*",
 		"copy": "gulp build-copy",
 		"archive": "echo Create <%= theme_domain %>.zip & cross-zip dist/<%= theme_domain %> dist/<%= theme_domain %>.zip"
-		
+
 	},
 	"devDependencies": {
 		"autoprefixer": "^7.1.5",
