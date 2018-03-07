@@ -64,7 +64,6 @@
 
 		"clean": "rimraf dist/**/*",
 		"copy": "copyfiles --exclude \"dist/**\" --exclude \"maps/**\" --exclude \"node_modules/**\" --exclude \"sass/**\" --exclude \"package-lock.json\" --exclude \"package.json\" --exclude \"bower_components/**\" *.* **/**  dist/<%= theme_domain %> && echo Files copied.",
-		"copy": "gulp build-copy",
 		"archive": "echo Create <%= theme_domain %>.zip & cross-zip dist/<%= theme_domain %> dist/<%= theme_domain %>.zip"
 
 	},
