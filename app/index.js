@@ -373,12 +373,12 @@ module.exports = class extends Generator {
 				}
 			);
 
-			this.fs.copyTpl(
-				this.templatePath('_gulpfile.js'),
-				this.destinationPath('gulpfile.js'), {
-					theme_domain: this.themeSlug
-				}
-			);
+//			this.fs.copyTpl(
+//				this.templatePath('_gulpfile.js'),
+//				this.destinationPath('gulpfile.js'), {
+//					theme_domain: this.themeSlug
+//				}
+//			);
 
 		}
 		this.log(chalk.blue('Done!'));
@@ -448,11 +448,11 @@ module.exports = class extends Generator {
 			});
 			this.log(chalk.blue('rimraf'));
 
-			this.npmInstall(['gulp-cli'], {
+			this.npmInstall(['copyfiles'], {
 				'saveDev': true,
 				'global': true
 			});
-			this.log(chalk.blue('gulp-cli'));
+			this.log(chalk.blue('copyfiles'));
 
 			this.npmInstall(['uglify-js'], {
 				'saveDev': true,
@@ -481,8 +481,8 @@ module.exports = class extends Generator {
 	end() {
 		if (this.npmsetup) {
 			
-			var exec = require('child_process').exec; 
-			exec('npm link gulp', function(err, stdout) { console.log('link gulp', stdout); });
+//			var exec = require('child_process').exec; 
+//			exec('npm link gulp', function(err, stdout) { console.log('link gulp', stdout); });
 			
 			this.log('\nRun ' + chalk.green('npm run watch ') + ' to start the development and ' + chalk.green('npm run build') + ' to create a files in /dist/' + chalk.white('' + this.themeSlug) + ' ready for production.');
 			
