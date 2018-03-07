@@ -448,11 +448,11 @@ module.exports = class extends Generator {
 			});
 			this.log(chalk.blue('rimraf'));
 
-			this.npmInstall(['gulp'], {
+			this.npmInstall(['gulp-cli'], {
 				'saveDev': true,
 				'global': true
 			});
-			this.log(chalk.blue('gulp'));
+			this.log(chalk.blue('gulp-cli'));
 
 			this.npmInstall(['uglify-js'], {
 				'saveDev': true,
