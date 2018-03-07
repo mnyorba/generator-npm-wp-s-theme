@@ -63,6 +63,7 @@
 		"build": "run-s -l lang clean copy build-css:* archive",
 
 		"clean": "rimraf dist/**/*",
+		"copy": "copyfiles --exclude \"dist/**\" --exclude \"maps/**\" --exclude \"node_modules/**\" --exclude \"sass/**\" --exclude \"package-lock.json\" --exclude \"package.json\" --exclude \"bower_components/**\" *.* **/**  dist/<%= theme_domain %> && echo Files copied.",
 		"copy": "gulp build-copy",
 		"archive": "echo Create <%= theme_domain %>.zip & cross-zip dist/<%= theme_domain %> dist/<%= theme_domain %>.zip"
 
@@ -78,7 +79,7 @@
 		"onchange": "^3.2.1",
 		"postcss-cli": "^4.1.1",
 		"rimraf": "^2.6.2",
-		"gulp-cli": "^2.0.1",
+		"copyfiles": "^2.0.0",
 		"uglify-js": "^3.1.3",
 		"wiredep-cli": "^0.1.0",
 		"wp-pot-cli": "^1.0.3",
