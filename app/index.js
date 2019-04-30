@@ -111,22 +111,6 @@ module.exports = class extends Generator {
 			]
 			)
 			.then((answers) => {
-//				this.log('Proxy:', chalk.yellow(answers.proxy));
-//				this.log('Domain:', chalk.yellow(answers.domain));
-//				this.log('Theme name:', chalk.yellow(answers.themeName));
-//				this.log('Theme slug:', chalk.yellow(answers.themeSlug));
-//				this.log('Theme URI:', chalk.yellow(answers.themeURI));
-//				this.log('Author:', chalk.yellow(answers.author));
-//				this.log('Author URI:', chalk.yellow(answers.authorURI));
-//				this.log('Author email:', chalk.yellow(answers.authorEmail));
-//				this.log('Description:', chalk.yellow(answers.description));
-//				this.log('Bug report:', chalk.yellow(answers.bugreport));
-//				this.log('Add editorconfig file:', chalk.yellow(answers.editorconfig));
-//				this.log('Add gitignore file:', chalk.yellow(answers.gitignore));
-//				this.log('Add stylelintrc file:', chalk.yellow(answers.stylelintrc));
-//				this.log('Add npmrc file:', chalk.yellow(answers.npmrc));
-//				this.log('Add npm setup:', chalk.yellow(answers.npmsetup));
-
 				this.proxy = answers.proxy;
 				this.domain = answers.domain;
 				this.themeName = answers.themeName;
@@ -171,18 +155,18 @@ module.exports = class extends Generator {
 				// create custom catalogs & files
 				this.log(chalk.yellow('\nAdd custom catalogs & files...'));
 
-				// if (!fs.existsSync('sass/theme.scss')) {
-				// 	fs.writeFileSync('sass/theme.scss', '/*!\n Theme Name: _s \n*/', 'utf-8');
-				// }
-				// if (!fs.existsSync('css')) {
-				// 	fs.mkdirSync('css');
-				// }
-				// if (!fs.existsSync('fonts')) {
-				// 	fs.mkdirSync('fonts');
-				// }
-				// if (!fs.existsSync('images')) {
-				// 	fs.mkdirSync('images');
-				// }
+				if (!fs.existsSync('sass/theme.scss')) {
+					fs.writeFileSync('sass/theme.scss', '/*!\n Theme Name: _s \n*/', 'utf-8');
+				}
+				if (!fs.existsSync('css')) {
+					fs.mkdirSync('css');
+				}
+				if (!fs.existsSync('fonts')) {
+					fs.mkdirSync('fonts');
+				}
+				if (!fs.existsSync('images')) {
+					fs.mkdirSync('images');
+				}
 				this.log(chalk.blue('Done!'));
 			})
 			.then(() => {
@@ -372,14 +356,6 @@ module.exports = class extends Generator {
 					author_email: this.authorEmail
 				}
 			);
-
-//			this.fs.copyTpl(
-//				this.templatePath('_gulpfile.js'),
-//				this.destinationPath('gulpfile.js'), {
-//					theme_domain: this.themeSlug
-//				}
-//			);
-
 		}
 		this.log(chalk.blue('Done!'));
 	}
@@ -484,7 +460,7 @@ module.exports = class extends Generator {
 //			var exec = require('child_process').exec; 
 //			exec('npm link gulp', function(err, stdout) { console.log('link gulp', stdout); });
 			
-			this.log('\nRun ' + chalk.green('npm run watch ') + ' to start the development and ' + chalk.green('npm run build') + ' to create a files in /dist/' + chalk.white('' + this.themeSlug) + ' ready for production.');
+//			this.log('\nRun ' + chalk.green('npm run watch ') + ' to start the development and ' + chalk.green('npm run build') + ' to create a files in /dist/' + chalk.white('' + this.themeSlug) + ' ready for production.');
 			
 		}
 		this.log(chalk.green('\nAll Done!!\n------------------------\n'));
