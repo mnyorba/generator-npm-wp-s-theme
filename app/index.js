@@ -295,8 +295,8 @@ module.exports = class extends Generator {
 							// fs.rename(filePath, './languages/' + _this.themeSlug + '.pot');
 							fs.rename(filePath, './languages/' + _this.themeSlug + '.pot', (err) => {
 								if (err) throw err;
-								// console.log('renamed complete');
-								this.log(chalk.green('Renamed complete!'));
+								console.log('renamed complete');
+								// this.log(chalk.green('Renamed complete!'));
 							});
 
 							next();
