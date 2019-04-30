@@ -12,7 +12,7 @@ var path = require('path');
 module.exports = class extends Generator {
 	prompting() {
 		// Have Yeoman greet the user.
-		this.log(yosay(
+		console.log(yosay(
 			'Welcome to the world-class ' + chalk.red('generator-npm-wp-s-theme') + ' generator!'
 		));
 
@@ -135,7 +135,7 @@ module.exports = class extends Generator {
 		var unusedFiles = ['.travis.yml', 'codesniffer.ruleset.xml', 'README.md'];
 
 		// Download _s theme
-		this.log(chalk.yellow('\nLet\'s download the latest version of Underscores...'));
+		console.log(chalk.yellow('\nLet\'s download the latest version of Underscores...'));
 
 		Promise.all([
 							'github.com/Automattic/_s/archive/master.tar.gz'
@@ -149,11 +149,11 @@ module.exports = class extends Generator {
 			//				strip: 1
 			//			})
 			.then(() => {
-				this.log(chalk.blue('End download!'));
+				console.log(chalk.blue('End download!'));
 			})
 			.then(() => {
 				// create custom catalogs & files
-				this.log(chalk.yellow('\nAdd custom catalogs & files...'));
+				console.log(chalk.yellow('\nAdd custom catalogs & files...'));
 
 				if (!fs.existsSync('sass/theme.scss')) {
 					fs.writeFileSync('sass/theme.scss', '/*!\n Theme Name: _s \n*/', 'utf-8');
@@ -167,11 +167,11 @@ module.exports = class extends Generator {
 				if (!fs.existsSync('images')) {
 					fs.mkdirSync('images');
 				}
-				this.log(chalk.blue('Done!'));
+				console.log(chalk.blue('Done!'));
 			})
 			.then(() => {
 				// Delete unused files
-				this.log(chalk.yellow('\nDeleting some unused files...'));
+				console.log(chalk.yellow('\nDeleting some unused files...'));
 
 				unusedFiles = _.map(unusedFiles, function (file) {
 					return dir + '/' + file;
@@ -181,10 +181,10 @@ module.exports = class extends Generator {
 						done(error);
 					})
 					.then(paths => {
-						this.log(chalk.cyan(paths.join('\n')));
+						console.log(chalk.cyan(paths.join('\n')));
 						done();
 					});
-				this.log(chalk.blue('Done!'));
+				console.log(chalk.blue('Done!'));
 			})
 			.then(() => {
 				// Parsing theme files 
@@ -194,11 +194,11 @@ module.exports = class extends Generator {
 				options = {
 					followLinks: false
 				};
-				this.log(chalk.yellow('\nParsing theme files...'));
+				console.log(chalk.yellow('\nParsing theme files...'));
 
 				walker = walk.walk('../');
 
-				this.log(chalk.white('	Please wait...'));
+				console.log(chalk.white('	Please wait...'));
 
 				walker.on("file", function (root, fileStats, next) {
 					var filePath = root + '/' + fileStats.name;
@@ -295,8 +295,8 @@ module.exports = class extends Generator {
 							// fs.rename(filePath, './languages/' + _this.themeSlug + '.pot');
 							fs.rename(filePath, './languages/' + _this.themeSlug + '.pot', (err) => {
 								if (err) throw err;
-								console.log('renamed complete');
-								// this.log(chalk.green('Renamed complete!'));
+								console.log(chalk.green('Renamed complete'));
+								// console.log(chalk.green('Renamed complete!'));
 							});
 
 							next();
@@ -315,11 +315,11 @@ module.exports = class extends Generator {
 					done();
 				});
 
-				this.log(chalk.blue('Parsing done!'));
+				console.log(chalk.blue('Parsing done!'));
 			});
 		
 		// Copying configuration files
-		this.log(chalk.yellow('\nCopying configuration files...'));
+		console.log(chalk.yellow('\nCopying configuration files...'));
 		if (this.gitignore) {
 			this.fs.copy(
 				this.templatePath('_gitignore'),
@@ -362,96 +362,96 @@ module.exports = class extends Generator {
 				}
 			);
 		}
-		this.log(chalk.blue('Done!'));
+		console.log(chalk.blue('Done!'));
 	}
 
 	install() {
 		if (this.npmsetup) {
-			this.log(chalk.yellow('\nInstalling required packages...'));
+			console.log(chalk.yellow('\nInstalling required packages...'));
 
 			this.npmInstall(['autoprefixer'], {
 				'saveDev': true,
 				'global': true
 			});
-			this.log(chalk.blue('autoprefixer'));
+			console.log(chalk.blue('autoprefixer'));
 
 			this.npmInstall(['browser-sync'], {
 				'saveDev': true,
 				'global': true
 			});
-			this.log(chalk.blue('browser-sync'));
+			console.log(chalk.blue('browser-sync'));
 
 			this.npmInstall(['imagemin-cli'], {
 				'saveDev': true,
 				'global': true
 			});
-			this.log(chalk.blue('imagemin-cli'));
+			console.log(chalk.blue('imagemin-cli'));
 
 			this.npmInstall(['jscs'], {
 				'saveDev': true,
 				'global': true
 			});
-			this.log(chalk.blue('jscs'));
+			console.log(chalk.blue('jscs'));
 
 			this.npmInstall(['mkdirp'], {
 				'saveDev': true,
 				'global': true
 			});
-			this.log(chalk.blue('mkdirp'));
+			console.log(chalk.blue('mkdirp'));
 
 			this.npmInstall(['node-sass'], {
 				'saveDev': true,
 				'global': true
 			});
-			this.log(chalk.blue('node-sass'));
+			console.log(chalk.blue('node-sass'));
 
 			this.npmInstall(['npm-run-all'], {
 				'saveDev': true,
 				'global': true
 			});
-			this.log(chalk.blue('npm-run-all'));
+			console.log(chalk.blue('npm-run-all'));
 
 			this.npmInstall(['onchange'], {
 				'saveDev': true,
 				'global': true
 			});
-			this.log(chalk.blue('onchange'));
+			console.log(chalk.blue('onchange'));
 
 			this.npmInstall(['postcss-cli'], {
 				'saveDev': true,
 				'global': true
 			});
-			this.log(chalk.blue('postcss-cli'));
+			console.log(chalk.blue('postcss-cli'));
 
 			this.npmInstall(['rimraf'], {
 				'saveDev': true,
 				'global': true
 			});
-			this.log(chalk.blue('rimraf'));
+			console.log(chalk.blue('rimraf'));
 
 			this.npmInstall(['copyfiles'], {
 				'saveDev': true,
 				'global': true
 			});
-			this.log(chalk.blue('copyfiles'));
+			console.log(chalk.blue('copyfiles'));
 
 			this.npmInstall(['uglify-js'], {
 				'saveDev': true,
 				'global': true
 			});
-			this.log(chalk.blue('uglify-js'));
+			console.log(chalk.blue('uglify-js'));
 
 			this.npmInstall(['wiredep-cli'], {
 				'saveDev': true,
 				'global': true
 			});
-			this.log(chalk.blue('wiredep-cli'));
+			console.log(chalk.blue('wiredep-cli'));
 			
 			this.npmInstall(['cross-zip-cli'], {
 				'saveDev': true,
 				'global': true
 			});
-			this.log(chalk.blue('cross-zip-cli'));
+			console.log(chalk.blue('cross-zip-cli'));
 		};
 	}
 	end() {
@@ -460,9 +460,9 @@ module.exports = class extends Generator {
 //			var exec = require('child_process').exec; 
 //			exec('npm link gulp', function(err, stdout) { console.log('link gulp', stdout); });
 			
-			this.log('\nRun ' + chalk.green('npm run watch ') + ' to start the development and ' + chalk.green('npm run build') + ' to create a files in /dist/' + chalk.white('' + this.themeSlug) + ' ready for production.');
+			console.log('\nRun ' + chalk.green('npm run watch ') + ' to start the development and ' + chalk.green('npm run build') + ' to create a files in /dist/' + chalk.white('' + this.themeSlug) + ' ready for production.');
 			
 		}
-		this.log(chalk.green('\nAll Done!!\n------------------------\n'));
+		console.log(chalk.green('\nAll Done!!\n------------------------\n'));
 	}
 };
