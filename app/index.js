@@ -143,11 +143,6 @@ module.exports = class extends Generator {
 				extract: true,
 				strip: 1
 			})))
-
-			//		download('https://github.com/Automattic/_s/archive/master.tar.gz', '.', {
-			//				extract: true,
-			//				strip: 1
-			//			})
 			.then(() => {
 				console.log(chalk.blue('End download!'));
 			})
@@ -293,10 +288,16 @@ module.exports = class extends Generator {
 							});
 
 							// fs.rename(filePath, './languages/' + _this.themeSlug + '.pot');
+							// fs.rename(filePath, './languages/' + _this.themeSlug + '.pot', (err) => {
+							// 	if (err) throw err;
+							// 	console.log(chalk.green('Renamed complete'));
+							// });
 							fs.rename(filePath, './languages/' + _this.themeSlug + '.pot', (err) => {
 								if (err) throw err;
-								console.log(chalk.green('Renamed complete'));
-								// console.log(chalk.green('Renamed complete!'));
+									fs.stat('./languages/' + _this.themeSlug + '.pot', (err, stats) => {
+								if (err) throw err;
+									console.log(`stats: ${JSON.stringify(stats)}`);
+								});
 							});
 
 							next();
