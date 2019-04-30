@@ -132,7 +132,7 @@ module.exports = class extends Generator {
 		// Download _s theme
 		var done = this.async();
 		var dir = this.destinationRoot();
-		var unusedFiles = ['.travis.yml', 'codesniffer.ruleset.xml', 'README.md'];
+		var unusedFiles = ['.travis.yml', '.jscsrc', 'README.md'];
 
 		// Download _s theme
 		console.log(chalk.yellow('\nLet\'s download the latest version of Underscores...'));
