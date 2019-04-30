@@ -171,18 +171,18 @@ module.exports = class extends Generator {
 				// create custom catalogs & files
 				this.log(chalk.yellow('\nAdd custom catalogs & files...'));
 
-				if (!fs.existsSync('sass/theme.scss')) {
-					fs.writeFileSync('sass/theme.scss', '/*!\n Theme Name: _s \n*/', 'utf-8');
-				}
-				if (!fs.existsSync('css')) {
-					fs.mkdirSync('css');
-				}
-				if (!fs.existsSync('fonts')) {
-					fs.mkdirSync('fonts');
-				}
-				if (!fs.existsSync('images')) {
-					fs.mkdirSync('images');
-				}
+				// if (!fs.existsSync('sass/theme.scss')) {
+				// 	fs.writeFileSync('sass/theme.scss', '/*!\n Theme Name: _s \n*/', 'utf-8');
+				// }
+				// if (!fs.existsSync('css')) {
+				// 	fs.mkdirSync('css');
+				// }
+				// if (!fs.existsSync('fonts')) {
+				// 	fs.mkdirSync('fonts');
+				// }
+				// if (!fs.existsSync('images')) {
+				// 	fs.mkdirSync('images');
+				// }
 				this.log(chalk.blue('Done!'));
 			})
 			.then(() => {
