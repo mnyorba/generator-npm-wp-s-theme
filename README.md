@@ -9,15 +9,15 @@
 * [Need help?](#need-help)
 
 ## List of packages used:
-* #### for development theme:
+#### for development theme:
 [autoprefixer](https://github.com/postcss/autoprefixer), [browser-sync](https://github.com/Browsersync/browser-sync), [jscs](https://github.com/jscs-dev/node-jscs), [imagemin-cli](https://github.com/imagemin/imagemin-cli), [mkdirp](https://github.com/substack/node-mkdirp),  [node-sass](https://github.com/sass/node-sass), [npm-run-all](https://github.com/mysticatea/npm-run-all), [onchange](https://github.com/Qard/onchange), [postcss-cli](https://github.com/code42day/postcss-cli), [rimraf](https://github.com/isaacs/rimraf), [copyfiles](https://github.com/calvinmetcalf/copyfiles), [stylelint](https://github.com/stylelint/stylelint), [uglify-js](https://github.com/mishoo/UglifyJS2), [wiredep-cli](https://github.com/taptapship/wiredep-cli), [cross-zip-cli](https://github.com/jprichardson/cross-zip-cli), [wp-pot-cli](https://github.com/rasmusbe/wp-pot-cli).
 
-* #### for download and generation clean theme:
+#### for download and generation clean theme: 
 [chalk](https://github.com/chalk/chalk), [copy](https://github.com/jonschlinkert/copy), [del](https://github.com/sindresorhus/del), [download](https://github.com/kevva/download), [lodash](https://github.com/lodash/lodash), [output-file-sync](https://github.com/shinnn/output-file-sync), [path](https://github.com/jinder/path), [walk](https://github.com/Daplie/node-walk), [yeoman-generator](https://github.com/yeoman/generator), [yosay](https://github.com/yeoman/yosay) .
 
 ## Installation
 
-* First, ensure that node.js & npm are both installed. If not, choose your OS and installation method from [this page](https://nodejs.org/en/download/package-manager/) and follow the instructions.
+First, ensure that node.js & npm are both installed. If not, choose your OS and installation method from [this page](https://nodejs.org/en/download/package-manager/) and follow the instructions.
 
 ##### Install required tools `yo`:
 
@@ -78,12 +78,6 @@ You're ready to go! Run any task by typing `npm run task` (where "task" is the n
   `npm run lang`
   
   Updates the theme language file.
-
-
-## Bower usage
-- Run `bower install --save <package>` to install frontend dependencies
-- Run `wiredep` to include SCSS file in `/sass/style.scss`
-
 
 ## Need help?
 Feel free to [create an issue](https://github.com/mnyorba/generator-npm-wp-s-theme/issues), [tweet me](http://twitter.com/m_nyorba), or [send me an email](mailto:mnyorba@gmail.com). I'd be glad to help where I can!
