@@ -448,11 +448,6 @@ module.exports = class extends Generator {
 			});
 			this.log(chalk.blue('cross-zip-cli'));
 		};
-//		this.installDependencies({
-//			npm: true,
-//			bower: true,
-//			yarn: false
-//		});
 	}
 	end() {
 		if (this.npmsetup) {
@@ -460,7 +455,7 @@ module.exports = class extends Generator {
 //			var exec = require('child_process').exec; 
 //			exec('npm link gulp', function(err, stdout) { console.log('link gulp', stdout); });
 			
-//			this.log('\nRun ' + chalk.green('npm run watch ') + ' to start the development and ' + chalk.green('npm run build') + ' to create a files in /dist/' + chalk.white('' + this.themeSlug) + ' ready for production.');
+			this.log('\nRun ' + chalk.green('npm run watch ') + ' to start the development and ' + chalk.green('npm run build') + ' to create a files in /dist/' + chalk.white('' + this.themeSlug) + ' ready for production.');
 			
 		}
 		this.log(chalk.green('\nAll Done!!\n------------------------\n'));
