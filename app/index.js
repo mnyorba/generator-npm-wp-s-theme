@@ -236,7 +236,7 @@ module.exports = class extends Generator {
 							result = result.replace(/(Text Domain: )(.+)/g, '$1' + _this.themeSlug);
 							result = result.replace(/_s is based on Underscores/g, _this.themeName + ' is based on Underscores');
 							result = result.replace(/\@import "variables-site\/variables-site";/g, '\n\n// bower:scss' + '\n\n// endbower' + '\n\n@import "variables-site\/variables-site";');
-							result = result.replace(/\@import "media\/media";/g, '@import "media\/media";' + '\n\n/*--------------------------------------------------------------\n\n' + '# Theme\n' + '--------------------------------------------------------------*/\n' + '@import "theme";\n');
+							result = result.replace(/\@import "media\/media";/g, '@import "media\/media";' + '\n\n/*--------------------------------------------------------------\n' + '# Theme\n' + '--------------------------------------------------------------*/\n' + '@import "theme";\n');
 
 							fs.writeFile(filePath, result, 'utf8', function (err) {
 								if (err) {
@@ -287,17 +287,10 @@ module.exports = class extends Generator {
 								}
 							});
 
-							// fs.rename(filePath, './languages/' + _this.themeSlug + '.pot');
-							// fs.rename(filePath, './languages/' + _this.themeSlug + '.pot', (err) => {
-							// 	if (err) throw err;
-							// 	console.log(chalk.green('Renamed complete'));
-							// });
+							fs.rename(filePath, './languages/' + _this.themeSlug + '.pot');
 							fs.rename(filePath, './languages/' + _this.themeSlug + '.pot', (err) => {
 								if (err) throw err;
-									fs.stat('./languages/' + _this.themeSlug + '.pot', (err, stats) => {
-								if (err) throw err;
-									console.log(`stats: ${JSON.stringify(stats)}`);
-								});
+								console.log(chalk.green('Renamed complete'));
 							});
 
 							next();
@@ -457,9 +450,6 @@ module.exports = class extends Generator {
 	}
 	end() {
 		if (this.npmsetup) {
-			
-//			var exec = require('child_process').exec; 
-//			exec('npm link gulp', function(err, stdout) { console.log('link gulp', stdout); });
 			
 			console.log('\nRun ' + chalk.green('npm run watch ') + ' to start the development and ' + chalk.green('npm run build') + ' to create a files in /dist/' + chalk.white('' + this.themeSlug) + ' ready for production.');
 			
