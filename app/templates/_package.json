@@ -80,7 +80,6 @@
 		"copyfiles": "^2.1.0",
 		"uglify-js": "^3.5.5",
 		"wp-pot-cli": "^1.2.4",
-		"walk": "^2.3.14",
 		"cross-zip-cli": "^1.0.0"
 	}
 }
