@@ -200,7 +200,7 @@ module.exports = class extends Generator {
 					followLinks: false
 				};
 				console.log(chalk.yellow('\nParsing theme files...'));
-				var startParsing = process.hrtime();
+				var start = process.hrtime();
 
 				walker = walk.walk('../');
 
@@ -210,7 +210,6 @@ module.exports = class extends Generator {
 					var filePath = root + '/' + fileStats.name;
 
 					console.log(chalk.yellow('\nRenaming theme files...'));
-					var start = process.hrtime();
 
 					if (path.extname(fileStats.name) == '.php') {
 						fs.readFile(filePath, 'utf8', function (err, data) {
@@ -324,7 +323,7 @@ module.exports = class extends Generator {
 					done();
 				});
 
-				var end = process.hrtime(startParsing);
+				var end = process.hrtime(start);
 				var words = prettyHrtime(end);
 				console.log('Parsing done in ' + words + '.');
 			});
