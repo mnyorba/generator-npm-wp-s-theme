@@ -346,7 +346,9 @@ module.exports = class extends Generator {
 		if (this.stylelintrc) {
 			this.fs.copy(
 				this.templatePath('_stylelintrc'),
-				this.destinationPath('.stylelintrc')
+				this.destinationPath('.stylelintrc'),
+				this.templatePath('_jshintignore'),
+				this.destinationPath('.jshintignore')
 			);
 		}
 		if (this.npmrc) {
@@ -399,11 +401,11 @@ module.exports = class extends Generator {
 			});
 			console.log(chalk.blue('imagemin-cli'));
 
-			this.npmInstall(['jscs'], {
+			this.npmInstall(['jshint'], {
 				'saveDev': true,
 				'global': true
 			});
-			console.log(chalk.blue('jscs'));
+			console.log(chalk.blue('jshint'));
 
 			this.npmInstall(['make-dir-cli'], {
 				'saveDev': true,
