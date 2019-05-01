@@ -399,17 +399,17 @@ module.exports = class extends Generator {
 			});
 			console.log(chalk.blue('imagemin-cli'));
 
-			this.npmInstall(['jscs'], {
+			this.npmInstall(['stylelint'], {
 				'saveDev': true,
 				'global': true
 			});
-			console.log(chalk.blue('jscs'));
+			console.log(chalk.blue('stylelint'));
 
-			this.npmInstall(['mkdirp'], {
+			this.npmInstall(['make-dir-cli'], {
 				'saveDev': true,
 				'global': true
 			});
-			console.log(chalk.blue('mkdirp'));
+			console.log(chalk.blue('make-dir-cli'));
 
 			this.npmInstall(['node-sass'], {
 				'saveDev': true,
@@ -453,11 +453,11 @@ module.exports = class extends Generator {
 			});
 			console.log(chalk.blue('uglify-js'));
 
-			this.npmInstall(['wiredep-cli'], {
+			this.npmInstall(['wp-pot-cli'], {
 				'saveDev': true,
 				'global': true
 			});
-			console.log(chalk.blue('wiredep-cli'));
+			console.log(chalk.blue('wp-pot-cli'));
 			
 			this.npmInstall(['cross-zip-cli'], {
 				'saveDev': true,
