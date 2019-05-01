@@ -28,7 +28,7 @@
     "walk": "^2.3.14",
     "yeoman-generator": "^3.2.0",
     "yosay": "^2.0.2",
-    "cli-spinners": "^2.1.0"
+    "pretty-hrtime": "^1.0.3"
   },
   "repository": {
     "type": "git",
