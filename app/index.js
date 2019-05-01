@@ -3,6 +3,7 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const download = require('download');
+const cliSpinners = require('cli-spinners');
 var fs = require('fs');
 var del = require('del');
 var _ = require('lodash');
