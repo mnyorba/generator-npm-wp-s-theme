@@ -3,12 +3,12 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const download = require('download');
-const cliSpinners = require('cli-spinners');
 var fs = require('fs');
 var del = require('del');
 var _ = require('lodash');
 var walk = require('walk');
 var path = require('path');
+var prettyHrtime = require('pretty-hrtime');
 
 module.exports = class extends Generator {
 	prompting() {
@@ -137,7 +137,7 @@ module.exports = class extends Generator {
 
 		// Download _s theme
 		console.log(chalk.yellow('\nLet\'s download the latest version of Underscores...'));
-		console.log(cliSpinners.line);
+		var start = process.hrtime();
 
 		Promise.all([
 							'github.com/Automattic/_s/archive/master.tar.gz'
@@ -146,11 +146,15 @@ module.exports = class extends Generator {
 				strip: 1
 			})))
 			.then(() => {
-				console.log(chalk.blue('End download!'));
+				console.log(chalk.blue('End download! '));
+				var end = process.hrtime(start);
+				// var words = prettyHrtime(end);
+				console.log(prettyHrtime(end));
 			})
 			.then(() => {
 				// create custom catalogs & files
 				console.log(chalk.yellow('\nAdd custom catalogs & files...'));
+				var start = process.hrtime();
 
 				if (!fs.existsSync('sass/theme.scss')) {
 					fs.writeFileSync('sass/theme.scss', '/*!\n Theme Name: _s \n*/', 'utf-8');
@@ -164,12 +168,14 @@ module.exports = class extends Generator {
 				if (!fs.existsSync('images')) {
 					fs.mkdirSync('images');
 				}
-				console.log(chalk.blue('Done!'));
+				console.log(chalk.blue('Done! '));
+				var end = process.hrtime(start);
+				// var words = prettyHrtime(end);
+				console.log(prettyHrtime(end));
 			})
 			.then(() => {
 				// Delete unused files
 				console.log(chalk.yellow('\nDeleting some unused files...'));
-				console.log(cliSpinners.line);
 
 				unusedFiles = _.map(unusedFiles, function (file) {
 					return dir + '/' + file;
@@ -193,7 +199,6 @@ module.exports = class extends Generator {
 					followLinks: false
 				};
 				console.log(chalk.yellow('\nParsing theme files...'));
-				console.log(cliSpinners.line);
 
 				walker = walk.walk('../');
 
