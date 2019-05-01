@@ -140,16 +140,15 @@ module.exports = class extends Generator {
 		var start = process.hrtime();
 
 		Promise.all([
-							'github.com/Automattic/_s/archive/master.tar.gz'
-						].map(x => download(x, '.', {
+			'github.com/Automattic/_s/archive/master.tar.gz'
+			].map(x => download(x, '.', {
 				extract: true,
 				strip: 1
 			})))
 			.then(() => {
-				console.log(chalk.blue('End download! '));
 				var end = process.hrtime(start);
-				// var words = prettyHrtime(end);
-				console.log(prettyHrtime(end));
+				var words = prettyHrtime(end);
+				console.log('End download in ' + words + '.');
 			})
 			.then(() => {
 				// create custom catalogs & files
@@ -168,14 +167,14 @@ module.exports = class extends Generator {
 				if (!fs.existsSync('images')) {
 					fs.mkdirSync('images');
 				}
-				console.log(chalk.blue('Done! '));
 				var end = process.hrtime(start);
-				// var words = prettyHrtime(end);
-				console.log(prettyHrtime(end));
+				var words = prettyHrtime(end);
+				console.log('Done in ' + words + '.');
 			})
 			.then(() => {
 				// Delete unused files
 				console.log(chalk.yellow('\nDeleting some unused files...'));
+				var start = process.hrtime();
 
 				unusedFiles = _.map(unusedFiles, function (file) {
 					return dir + '/' + file;
@@ -188,7 +187,9 @@ module.exports = class extends Generator {
 						console.log(chalk.cyan(paths.join('\n')));
 						done();
 					});
-				console.log(chalk.blue('Done!'));
+				var end = process.hrtime(start);
+				var words = prettyHrtime(end);
+				console.log('Done in ' + words + '.');
 			})
 			.then(() => {
 				// Parsing theme files 
@@ -199,6 +200,7 @@ module.exports = class extends Generator {
 					followLinks: false
 				};
 				console.log(chalk.yellow('\nParsing theme files...'));
+				var start = process.hrtime();
 
 				walker = walk.walk('../');
 
@@ -298,7 +300,9 @@ module.exports = class extends Generator {
 
 							fs.rename(filePath, './languages/' + _this.themeSlug + '.pot', (err) => {
 								if (err) throw err;
-								console.log(chalk.green('Renamed complete'));
+								var end = process.hrtime(start);
+								var words = prettyHrtime(end);
+								console.log('Renamed complete in' + words + '.');
 							});
 
 							next();
@@ -317,11 +321,13 @@ module.exports = class extends Generator {
 					done();
 				});
 
-				console.log(chalk.blue('Parsing done!'));
+				console.log('Parsing done!');
 			});
 		
 		// Copying configuration files
 		console.log(chalk.yellow('\nCopying configuration files...'));
+		var start = process.hrtime();
+
 		if (this.gitignore) {
 			this.fs.copy(
 				this.templatePath('_gitignore'),
@@ -364,7 +370,9 @@ module.exports = class extends Generator {
 				}
 			);
 		}
-		console.log(chalk.blue('Done!'));
+		var end = process.hrtime(start);
+		var words = prettyHrtime(end);
+		console.log('Done in ' + words + '.');
 	}
 
 	install() {
