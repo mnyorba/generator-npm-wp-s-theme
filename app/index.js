@@ -200,7 +200,7 @@ module.exports = class extends Generator {
 					followLinks: false
 				};
 				console.log(chalk.yellow('\nParsing theme files...'));
-				var start = process.hrtime();
+				var startParsing = process.hrtime();
 
 				walker = walk.walk('../');
 
@@ -208,6 +208,9 @@ module.exports = class extends Generator {
 
 				walker.on("file", function (root, fileStats, next) {
 					var filePath = root + '/' + fileStats.name;
+
+					console.log(chalk.yellow('\nRenaming theme files...'));
+					var start = process.hrtime();
 
 					if (path.extname(fileStats.name) == '.php') {
 						fs.readFile(filePath, 'utf8', function (err, data) {
@@ -302,7 +305,7 @@ module.exports = class extends Generator {
 								if (err) throw err;
 								var end = process.hrtime(start);
 								var words = prettyHrtime(end);
-								console.log('Renamed complete in' + words + '.');
+								console.log('Renamed complete in ' + words + '.');
 							});
 
 							next();
@@ -321,7 +324,9 @@ module.exports = class extends Generator {
 					done();
 				});
 
-				console.log('Parsing done!');
+				var end = process.hrtime(startParsing);
+				var words = prettyHrtime(end);
+				console.log('Parsing done in ' + words + '.');
 			});
 		
 		// Copying configuration files
