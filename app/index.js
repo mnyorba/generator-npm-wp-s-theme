@@ -136,6 +136,7 @@ module.exports = class extends Generator {
 
 		// Download _s theme
 		console.log(chalk.yellow('\nLet\'s download the latest version of Underscores...'));
+		console.log(cliSpinners.line);
 
 		Promise.all([
 							'github.com/Automattic/_s/archive/master.tar.gz'
@@ -167,6 +168,7 @@ module.exports = class extends Generator {
 			.then(() => {
 				// Delete unused files
 				console.log(chalk.yellow('\nDeleting some unused files...'));
+				console.log(cliSpinners.line);
 
 				unusedFiles = _.map(unusedFiles, function (file) {
 					return dir + '/' + file;
@@ -190,6 +192,7 @@ module.exports = class extends Generator {
 					followLinks: false
 				};
 				console.log(chalk.yellow('\nParsing theme files...'));
+				console.log(cliSpinners.line);
 
 				walker = walk.walk('../');
 
