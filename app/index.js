@@ -209,8 +209,6 @@ module.exports = class extends Generator {
 				walker.on("file", function (root, fileStats, next) {
 					var filePath = root + '/' + fileStats.name;
 
-					console.log(chalk.yellow('\nRenaming theme files...'));
-
 					if (path.extname(fileStats.name) == '.php') {
 						fs.readFile(filePath, 'utf8', function (err, data) {
 							if (err) {
