@@ -63,8 +63,7 @@
 
 		"clean": "rimraf dist/**/*",
 		"copy": "copyfiles --exclude \"dist/**\" --exclude \"maps/**\" --exclude \"node_modules/**\" --exclude \"sass/**\" --exclude \"package-lock.json\" --exclude \"package.json\" --exclude \"bower_components/**\" *.* **/**  dist/<%= theme_domain %> && echo Files copied.",
-		"archive": "echo Create <%= theme_domain %>.zip & cross-zip dist/<%= theme_domain %> dist/<%= theme_domain %>.zip"
-
+		"archive": "echo Create <%= theme_domain %>.zip & jszip-cli add --output dist/<%= theme_domain %>.zip dist/<%= theme_domain %> --noconfig -f"
 	},
 	"devDependencies": {
 		"autoprefixer": "^9.5.1",
@@ -80,6 +79,6 @@
 		"copyfiles": "^2.1.0",
 		"uglify-js": "^3.5.5",
 		"wp-pot-cli": "^1.2.4",
-		"cross-zip-cli": "^1.0.0"
+		"@ffflorian/jszip-cli": "^2.1.4",
 	}
 }

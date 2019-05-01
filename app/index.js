@@ -399,11 +399,11 @@ module.exports = class extends Generator {
 			});
 			console.log(chalk.blue('imagemin-cli'));
 
-			this.npmInstall(['stylelint'], {
+			this.npmInstall(['jscs'], {
 				'saveDev': true,
 				'global': true
 			});
-			console.log(chalk.blue('stylelint'));
+			console.log(chalk.blue('jscs'));
 
 			this.npmInstall(['make-dir-cli'], {
 				'saveDev': true,
@@ -459,11 +459,11 @@ module.exports = class extends Generator {
 			});
 			console.log(chalk.blue('wp-pot-cli'));
 			
-			this.npmInstall(['cross-zip-cli'], {
+			this.npmInstall(['@ffflorian/jszip-cli'], {
 				'saveDev': true,
 				'global': true
 			});
-			console.log(chalk.blue('cross-zip-cli'));
+			console.log(chalk.blue('@ffflorian/jszip-cli'));
 		};
 	}
 	end() {
