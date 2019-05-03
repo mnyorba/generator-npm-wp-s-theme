@@ -36,39 +36,43 @@
 		"scss:woocommerce": "node-sass --output-style expanded --indent-type tab --indent-width 1 --source-map maps --source-map-contents false --source-map-embed true --precision 6 sass/woocommerce.scss .tmp/woocommerce.css",
 		"scss": "run-p  --continue-on-error --print-label --silent --aggregate-output scss:*",
 
-		"autoprefixer": "postcss .tmp/*.css --use autoprefixer -d .",
+		"autoprefixer": "echo [autoprefixer    ] Parse CSS and add vendor prefixes to CSS rules & postcss .tmp/*.css --use autoprefixer -d .",
 
-		"css": "run-s scss autoprefixer",
+		"css": "run-s scss autoprefixer cssnano:*",
 
-		"serve": "browser-sync start --proxy \"<%= proxy_address %>/<%= proxy_domain %>\" --reload-delay 2000 --files \"*.css, js/*.js, **/*.php, languages/*.pot, !node_modules/**/*.html, !bower_components*.*\"",
+		"cssnano:style": "echo [cssnano:style      ] CSS compression style.css & postcss --use cssnano --output css/style.min.css .tmp/style.css",
+		"cssnano:woocommerce": "echo [cssnano:woocommerce] CSS compression woocommerce.css & postcss --use cssnano --output css/woocommerce.min.css .tmp/woocommerce.css",
 
-		"uglify": "make-dir dist/js && uglifyjs js/*.js -m -o dist/js/app.js && uglifyjs js/*.js -m -c -o dist/js/app.min.js",
-		"lint": "jshint js/",
+		"serve": "browser-sync start --proxy \"<%= proxy_address %>/<%= proxy_domain %>\" --reload-delay 4000 --files \"*.css, js/*.js, **/*.php, languages/*.pot, languages/*.po, !node_modules/**/*.html, !bower_components*.*\"",
 
 		"watch:css": "onchange \"sass\" -- run-s scss autoprefixer",
 		"watch:js": "onchange \"js\" -- run-s lint",
+		"watch:images": "onchange \"images\" -- browser-sync reload",
 		"watch": "run-p serve watch:*",
 
-		"lang": "echo Update <%= theme_domain %>.pot file & wp-pot --src \"**/*.php\" --dest-file \"languages/<%= theme_domain %>.pot\" --domain <%= theme_domain %> --package \"<%= theme_name %>\" --bug-report \"<%= author_uri %>\" --team \"<%= package_author %> <<%= author_email %>>\"",
+		"update-pot-file": "wp-pot --src \"**/*.php\" --dest-file \"languages/<%= theme_domain %>.pot\" --domain <%= theme_domain %> --package \"<%= theme_name %>\" --bug-report \"<%= author_uri %>\" --team \"<%= package_author %> <<%= author_email %>>\"",
+		"lang": "run-s -l update-pot-file",
 
-		"imagemin": "imagemin images/**/*.{jpg,png,svg,gif} --out-dir=images",
+		"uglify": "make-dir dist/js && uglifyjs js/*.js -m -o dist/js/app.js && uglifyjs js/*.js -m -c -o dist/js/app.min.js",
+
+		"lint": "jshint js",
 
 		"build-css:style": "node-sass --output-style expanded --indent-type tab --indent-width 1 --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/style.scss dist/<%= theme_domain %>/style.css",
 		"build-css:woocommerce": "node-sass --output-style expanded --indent-type tab --indent-width 1 --source-map maps --source-map-contents true --precision 6 --omit-source-map-url sass/woocommerce.scss dist/<%= theme_domain %>/woocommerce.css",
 		"build-css": "run-p  --continue-on-error --print-label --silent --aggregate-output build-css:*",
 
-		"build-images": "run-s imagemin",
-		"watch:images": "onchange \"images\" -- run-s build:images",
-		"build": "run-s -l lang build-images clean copy build-css:* archive",
+		"build": "run-s -l clean copy build-css:* archive",
 
 		"clean": "rimraf dist/**/*",
 		"copy": "copyfiles --exclude \"dist/**\" --exclude \"maps/**\" --exclude \"node_modules/**\" --exclude \"sass/**\" --exclude \"package-lock.json\" --exclude \"package.json\" --exclude \"bower_components/**\" *.* **/**  dist/<%= theme_domain %> && echo Files copied.",
 		"archive": "echo Create <%= theme_domain %>.zip & jszip-cli add --output dist/<%= theme_domain %>.zip dist/<%= theme_domain %> --noconfig -f"
 	},
 	"devDependencies": {
+		"@ffflorian/jszip-cli": "^2.1.4",
 		"autoprefixer": "^9.5.1",
 		"browser-sync": "^2.26.3",
-		"imagemin-cli": "^4.0.1",
+		"copyfiles": "^2.1.0",
+		"cssnano": "^4.1.10",
 		"jshint": "^2.10.2",
 		"make-dir-cli": "^2.0.0",
 		"node-sass": "^4.12.0",
@@ -76,9 +80,7 @@
 		"onchange": "^5.2.0",
 		"postcss-cli": "^6.1.2",
 		"rimraf": "^2.6.3",
-		"copyfiles": "^2.1.0",
 		"uglify-js": "^3.5.5",
 		"wp-pot-cli": "^1.2.4",
-		"@ffflorian/jszip-cli": "^2.1.4"
 	}
 }
