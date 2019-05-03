@@ -382,6 +382,12 @@ module.exports = class extends Generator {
 	install() {
 		if (this.npmsetup) {
 			console.log(chalk.yellow('\nInstalling required packages...'));
+			
+			this.npmInstall(['@ffflorian/jszip-cli'], {
+				'saveDev': true,
+				'global': true
+			});
+			console.log(chalk.blue('@ffflorian/jszip-cli'));
 
 			this.npmInstall(['autoprefixer'], {
 				'saveDev': true,
@@ -395,11 +401,17 @@ module.exports = class extends Generator {
 			});
 			console.log(chalk.blue('browser-sync'));
 
-			this.npmInstall(['imagemin-cli'], {
+			this.npmInstall(['copyfiles'], {
 				'saveDev': true,
 				'global': true
 			});
-			console.log(chalk.blue('imagemin-cli'));
+			console.log(chalk.blue('copyfiles'));
+
+			this.npmInstall(['cssnano'], {
+				'saveDev': true,
+				'global': true
+			});
+			console.log(chalk.blue('cssnano'));
 
 			this.npmInstall(['jshint'], {
 				'saveDev': true,
@@ -443,12 +455,6 @@ module.exports = class extends Generator {
 			});
 			console.log(chalk.blue('rimraf'));
 
-			this.npmInstall(['copyfiles'], {
-				'saveDev': true,
-				'global': true
-			});
-			console.log(chalk.blue('copyfiles'));
-
 			this.npmInstall(['uglify-js'], {
 				'saveDev': true,
 				'global': true
@@ -460,12 +466,6 @@ module.exports = class extends Generator {
 				'global': true
 			});
 			console.log(chalk.blue('wp-pot-cli'));
-			
-			this.npmInstall(['@ffflorian/jszip-cli'], {
-				'saveDev': true,
-				'global': true
-			});
-			console.log(chalk.blue('@ffflorian/jszip-cli'));
 		};
 	}
 	end() {
