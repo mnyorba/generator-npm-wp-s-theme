@@ -81,6 +81,6 @@
 		"postcss-cli": "^6.1.2",
 		"rimraf": "^2.6.3",
 		"uglify-js": "^3.5.5",
-		"wp-pot-cli": "^1.2.4",
+		"wp-pot-cli": "^1.2.4"
 	}
 }
